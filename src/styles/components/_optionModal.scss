@@ -1,0 +1,9 @@
+.option-modal{
+    .action-buttons{
+        display: flex;
+        flex-direction: row;
+    }
+    .action-buttons * {
+        margin: 0 5px;
+    }
+}

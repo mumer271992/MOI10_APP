@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  >* {
+    margin-bottom: $m-size;
+  }
+}
+
+.form__error {
+  margin: 0 0 $m-size 0;
+  font-style: italic;
+}
+.form-control{
+  height: auto;
+  line-height: 2.4;
+}
+.form-control:focus{
+  border-color: #cccccc;
+  box-shadow: none;
+  -webkit-box-shadow: none
+}

@@ -1,0 +1,21 @@
+.login-box{
+    width: 25%;
+    margin: auto;
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    transform: translateY(-50%);
+    .login-box-title{
+        text-align: center;
+    }
+    button {
+        display: block;
+    }
+}
+.foot_note{
+    text-align: center;
+    margin: 15px 0px;
+    a{
+        cursor: pointer;
+    }
+}
