@@ -42,7 +42,7 @@ class AddListItemModal extends React.Component {
         }
         console.log(config);
         axios.post(
-            'http://localhost:1337/listItem/create',
+            'http://api.moi10.com/listItem/create',
             {
                 name: this.state.name,
                 url: this.state.url,

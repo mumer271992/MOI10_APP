@@ -32,7 +32,7 @@ class LoginModal extends React.Component {
         e.preventDefault();
         console.log(this.state);
         axios.post(
-            'http://localhost:1337/auth/login',
+            'http://api.moi10.com/auth/login',
             {
                 email: this.state.email,
                 password: this.state.password

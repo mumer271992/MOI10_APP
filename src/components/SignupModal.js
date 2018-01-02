@@ -61,7 +61,7 @@ class SignupModal extends React.Component {
         }
 
         axios.post(
-            'http://localhost:1337/auth/signup',
+            'http://api.moi10.com/auth/signup',
             {
                 name: this.state.name,
                 email: this.state.email,

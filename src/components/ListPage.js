@@ -18,7 +18,7 @@ class ListPage extends React.Component {
         this.fetchCurrentList(id);
     }
     fetchCurrentList(id){
-        axios.get(`http://localhost:1337/list/fetch/${id}`)
+        axios.get(`http://api.moi10.com/list/fetch/${id}`)
         .then((res) => {
             console.log(res.data);
             this.setState(()=> ({

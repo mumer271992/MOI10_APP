@@ -35,7 +35,7 @@ class AddListModal extends React.Component {
         }
         console.log(config);
         axios.post(
-            'http://localhost:1337/list/create',
+            'http://api.moi10.com/list/create',
             this.state,
             config
         )
