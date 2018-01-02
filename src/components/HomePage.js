@@ -74,7 +74,7 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:1337/list').then((res) => {
+        axios.get('http://api.moi10.com/list').then((res) => {
             console.log("Lists fetched");
             console.log(res.data);
             this.props.dispatch(setLists(res.data));
