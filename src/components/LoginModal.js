@@ -80,7 +80,7 @@ class LoginModal extends React.Component {
                     console.log("Facebook Login");
                     console.log(res);
                     if(true){
-                        //this.props.dispatch(login(res.data.token));
+                        this.props.dispatch(login(res.data.token));
                         localStorage.setItem('auth_token',res.data.token);
                         console.log(this.props);
                         this.props.onSuccess();
