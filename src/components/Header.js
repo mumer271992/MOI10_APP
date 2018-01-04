@@ -45,6 +45,11 @@ class Header extends React.Component{
     }));
     console.log(this.props.uid);
   }
+  logout = (e) => {
+    e.preventDefault();
+    localStorage.setItem("auth_token",null);
+    this.props.history.push("/");
+  }
   close = () => {
     this.setState(() => ({
       showLoginModal: false,
@@ -70,7 +75,10 @@ class Header extends React.Component{
               </form>
             </div>
             <div className="col-md-2">
-              <button className="btn btn-success no-border" onClick={this.openLoginModal}>Login</button>
+              { !this.props.uid ? 
+                <button className="btn btn-success no-border" onClick={this.openLoginModal}>Login</button> : 
+                <button className="btn btn-success no-border" onClick={this.logout}>Logout</button>
+              }
             </div>
           </div>
         </header>
