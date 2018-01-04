@@ -5,6 +5,7 @@ import { startLogout } from '../actions/auth';
 import LoginModal  from '../components/LoginModal';
 import SignupModal from '../components/SignupModal';
 import { history } from '../routers/AppRouter';
+import {logout} from '../actions/auth';
 
 class Header extends React.Component{
   state = {
@@ -48,7 +49,8 @@ class Header extends React.Component{
   }
   logout = (e) => {
     e.preventDefault();
-    localStorage.setItem("auth_token",null);
+    localStorage.removeItem("auth_token");
+    this.props.dispatch(logout());
     history.push("/");
   }
   close = () => {
