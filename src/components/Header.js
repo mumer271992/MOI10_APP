@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 import LoginModal  from '../components/LoginModal';
 import SignupModal from '../components/SignupModal';
+import { history } from '../routers/AppRouter';
 
 class Header extends React.Component{
   state = {
@@ -48,7 +49,7 @@ class Header extends React.Component{
   logout = (e) => {
     e.preventDefault();
     localStorage.setItem("auth_token",null);
-    this.props.history.push("/");
+    history.push("/");
   }
   close = () => {
     this.setState(() => ({
