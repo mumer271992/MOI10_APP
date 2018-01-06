@@ -73,6 +73,7 @@ class ListPage extends React.Component {
         }));
     }
     onSuccessHandler = () => {
+        console.log("Login successfully");
         this.setState(() => ({
           showLoginModal: false,
           showSignupModal: false
@@ -87,14 +88,20 @@ class ListPage extends React.Component {
             switch(this.state.currentAction){
                 case 'ADD_LIST': 
                     this.openAddListModal();
+                    break;
                 case 'ADD_LIST_ITEM':
                     this.showAddItemModal();
+                    break;
                 case 'UP_VOTE':
+                    console.log("UP_VOTE");
                     this.vote(this.state.selectedItemId, 'up');
+                    break;
                 case 'DOWN_VOTE':
+                    console.log("DOWN_VOTE");
                     this.vote(this.state.selectedItemId, 'down');
+                    break;
                 default: 
-                    return;
+                    this.close();
             }
         }
     }
