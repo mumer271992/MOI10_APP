@@ -151,7 +151,8 @@ class ListPage extends React.Component {
         showOptionModal: false,
         showInfoModal: false,
         selectedItemId: '',
-        info: ''
+        info: '',
+        loading: false
     }
     onYes = () => {
         this.showAddItemModal();
@@ -206,6 +207,9 @@ class ListPage extends React.Component {
                 'Authorization': `Basic ${this.props.uid}`
             }
         }
+        this.setState(() => ({
+            loading: true
+        }));
         axios.post(`http://api.moi10.com/vote/${id}`, 
             {
                 item_id: id,
@@ -214,11 +218,17 @@ class ListPage extends React.Component {
             config
         ).then((res)=> {
             if(res.data.success){
+                this.setState(() => ({
+                    loading: false
+                }));
                 console.log("Vote has been submitted.");
                 this.fetchCurrentList(this.props.match.params.id);
             }
         }).catch((err) => {
             //console.log("Error: " , err);
+            this.setState(() => ({
+                loading: false
+            }));
             this.openInfoModal(err.response.data.error);
         });
     }
@@ -241,7 +251,10 @@ class ListPage extends React.Component {
                 <div className="page-content">
                     <div className="row">
                         <div className="col-md-9">
-                            <h1>{this.state.item.name}</h1>
+                            <h1>
+                                {this.state.item.name}
+                                {this.state.loading && <span className="spinner"></span>}
+                            </h1>
                         </div>
                         <div className="col-md-3 list-action-buttons">
                             <button className="btn btn-primary d-block action-button bg-darkblue add_list_button"
