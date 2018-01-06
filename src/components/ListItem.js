@@ -4,14 +4,30 @@ const ListItem = (props) => (
     <div className="row">
         <div className="col-md-2">
             <div className="vote-panel">
-                <i className="fa fa-arrow-circle-down" aria-hidden="true"></i>
-                <i className="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                <span className="fa-stack fa-lg" onClick={
+                    (e) => {
+                        e.preventDefault();
+                        props.onVote(props.item.id, 'up');
+                    }
+                }>
+                    <i className="fa fa-circle fa-stack-2x"></i>
+                    <i className={`fa fa-arrow-up fa-stack-1x ${props.item.my_vote && props.item.my_vote.vote === '+1' ? 'green' : 'white'}`}></i>
+                </span>
+                <span className="fa-stack fa-lg" onClick={
+                    (e) => {
+                        e.preventDefault();
+                        props.onVote(props.item.id, 'down');
+                    }
+                }>
+                    <i className="fa fa-circle fa-stack-2x"></i>
+                    <i className={`fa fa-arrow-down fa-stack-1x ${props.item.my_vote && props.item.my_vote.vote === '-1' ? 'red' : 'white'}`}></i>
+                </span>
             </div>                        
         </div>
         <div className="col-md-8">
             <div>
-                <h2>{props.itemName}</h2>
-                <p>{props.itemDescription}</p>
+                <h2>{props.item.name}</h2>
+                <p>{props.item.description}</p>
             </div>
         </div>
         <div className="col-md-3">

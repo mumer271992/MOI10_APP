@@ -60,6 +60,11 @@ class AddListItemModal extends React.Component {
         if(res && res.data){
             console.log(res.data);
             // this.props.onSuccess(res.data);
+            this.state = {
+                name: '',
+                url: '',
+                description: ''
+            }
             this.props.onSuccess(res.data);
         }
     }
@@ -77,6 +82,7 @@ class AddListItemModal extends React.Component {
                                 <input type="text" className="form-control" id="listname" placeholder="Enter list name here.."
                                     value={this.state.name}
                                     onChange={this.titleChangeHandler}
+                                    required
                                 />
                             </div>
                             <div className="form-group">

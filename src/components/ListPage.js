@@ -10,19 +10,26 @@ import AddListModal from '../components/AddListModal';
 import { addListItem } from '../actions/lists';
 import { history } from '../routers/AppRouter';
 import OptionModal from '../components/OptionModal';
+import InfoModal from '../components/InfoModal';
 
 class ListPage extends React.Component {
     constructor(props){
         super(props);
+        this.state.list_id = props.match.params.id;
+        this.state.uid = this.state.uid ? this.state.uid : props.uid;
+        this.state.user = this.state.user ? this.state.user : props.user;
         const id = props.match.params.id;
         this.fetchCurrentList(id);
     }
     fetchCurrentList(id){
-        axios.get(`http://api.moi10.com/list/fetch/${id}`)
+        const url = this.state.user && this.state.user.id ? 
+                    `http://api.moi10.com/list/fetch/${id}?user_id=${this.state.user.id}` : 
+                    `http://api.moi10.com/list/fetch/${id}`
+        axios.get(url)
         .then((res) => {
             console.log(res.data);
             this.setState(()=> ({
-                item: res.data
+                item: this.orderListItems(res.data)
             }));
         })
         .catch((err) => {
@@ -48,7 +55,8 @@ class ListPage extends React.Component {
             showSignupModal: false,
             showAddItemModal: false,
             showAddListModal: false,
-            showOptionModal: false
+            showOptionModal: false,
+            showInfoModal: false
         }));
     }
     openSignupModal = (e) => {
@@ -65,18 +73,28 @@ class ListPage extends React.Component {
         }));
     }
     onSuccessHandler = () => {
-        console.log("User successfully Loggedin.");
         this.setState(() => ({
           showLoginModal: false,
           showSignupModal: false
         }));
-        console.log(this.props.uid);
         if(this.props.uid){
-            if(this.state.currentAction === 'ADD_LIST'){
-                this.openAddListModal();
-            }
-            else {
-                this.showAddItemModal();
+            // if(this.state.currentAction === 'ADD_LIST'){
+            //     this.openAddListModal();
+            // }
+            // else {
+            //     this.showAddItemModal();
+            // }
+            switch(this.state.currentAction){
+                case 'ADD_LIST': 
+                    this.openAddListModal();
+                case 'ADD_LIST_ITEM':
+                    this.showAddItemModal();
+                case 'UP_VOTE':
+                    this.vote(this.state.selectedItemId, 'up');
+                case 'DOWN_VOTE':
+                    this.vote(this.state.selectedItemId, 'down');
+                default: 
+                    return;
             }
         }
     }
@@ -121,21 +139,101 @@ class ListPage extends React.Component {
         //history.push(`/list/${new_list.id}`);
     }
     state = {
+        list_id: '',
+        uid: '',
+        user: undefined,
         currentAction: '',
         openAddItemModal: false,
         showAddListModal: false,
         showLoginModal: false,
         showSignupModal: false,
         item: { name: '', description: '', items: []},
-        showOptionModal: false
+        showOptionModal: false,
+        showInfoModal: false,
+        selectedItemId: '',
+        info: ''
     }
     onYes = () => {
         this.showAddItemModal();
     }
     componentWillReceiveProps(nextProps){
-        const id = nextProps.match.params.id;
-        this.fetchCurrentList(id);
+        this.setState(() => ({
+           uid: nextProps.uid,
+           user: nextProps.user 
+        }), ()=> {
+            const id = nextProps.match.params.id;
+            this.fetchCurrentList(id);
+        });
     }
+    openInfoModal = (error) => {
+        this.setState(()=> ({
+            showLoginModal: false,
+            showSignupModal: false,
+            showAddItemModal: false,
+            showAddListModal: false,
+            showOptionModal: false,
+            showInfoModal: true,
+            info: error
+        }));
+    }
+
+    voteItem = (id, type) => {
+        if(type === 'up'){
+            this.setState(() => ({
+                currentAction: 'UP_VOTE',
+                selectedItemId: id
+            }));
+        }
+        else if(type === 'down'){
+            this.setState(() => ({
+                currentAction: 'DOWN_VOTE',
+                selectedItemId: id
+            }));
+        };
+
+        if(!this.props.uid){
+            this.openLoginModal();
+        }
+        else{
+            this.vote(id, type);
+        }
+    }
+
+    vote = (id, type) => {
+        var config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${this.props.uid}`
+            }
+        }
+        axios.post(`http://api.moi10.com/vote/${id}`, 
+            {
+                item_id: id,
+                vote: type === 'up' ? '+1' : '-1' 
+            },
+            config
+        ).then((res)=> {
+            if(res.data.success){
+                console.log("Vote has been submitted.");
+                this.fetchCurrentList(this.props.match.params.id);
+            }
+        }).catch((err) => {
+            //console.log("Error: " , err);
+            this.openInfoModal(err.response.data.error);
+        });
+    }
+
+    orderListItems = (input_item) =>{
+        let sortedItems = input_item.items.sort((a, b)=> {
+            return a.votes < b.votes ? 1 : -1;
+        });
+        console.log("Sorted Items");
+        console.log(sortedItems);
+        let item = input_item;
+        item.items = sortedItems;
+        return item;
+    }
+
     render() {
         return (
             <div>
@@ -160,8 +258,8 @@ class ListPage extends React.Component {
                                 this.state.item.items.map((item) => (
                                     <ListItem 
                                         key={item.id}
-                                        itemName={item.name}
-                                        itemDescription={item.description}
+                                        item={item}
+                                        onVote = {this.voteItem}
                                     />
                                 ))
                             }
@@ -199,13 +297,22 @@ class ListPage extends React.Component {
                         close={this.close}
                         onSuccess={this.onSuccessFullAddItem}
                     />
+                    <InfoModal
+                        show={this.state.showInfoModal}
+                        info={this.state.info}
+                        close={this.close}
+                    />
                 </div>
             </div>
         );
     }
 };
 
-const mapStateToProps = (state, props) => ({
-    uid: state.auth && state.auth.uid ? state.auth.uid : undefined
-});
+const mapStateToProps = (state, props) => {
+    console.log("Redux state is updated!");
+    return {
+        uid: state.auth && state.auth.uid ? state.auth.uid : undefined,
+        user: state.auth && state.auth.user ? state.auth.user : undefined
+    }
+};
 export default connect(mapStateToProps)(ListPage);

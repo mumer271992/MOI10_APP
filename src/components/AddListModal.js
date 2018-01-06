@@ -47,6 +47,10 @@ class AddListModal extends React.Component {
     _handleAddList = (res) => {
         if(res && res.data){
             console.log(res.data);
+            this.state = {
+                name: '',
+                description: ''
+            }
             this.props.onSuccess(res.data);
         }
     }
@@ -65,6 +69,7 @@ class AddListModal extends React.Component {
                                 <input type="text" className="form-control" id="listname" placeholder="Enter list name here.."
                                     value={this.state.name}
                                     onChange={this.titleChangeHandler}
+                                    required
                                 />
                             </div>
                             <h3>Most Important 10 {this.state.name}</h3>

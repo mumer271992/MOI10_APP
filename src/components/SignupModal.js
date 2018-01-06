@@ -78,7 +78,9 @@ class SignupModal extends React.Component {
         console.log("Api response");
         console.log(res);
         if(res.data && res.data.token){
-            this.props.dispatch(login(res.data.token));
+            this.props.dispatch(login({uid: res.data.token, user: res.data.user}));
+            localStorage.setItem('auth_token',res.data.token);
+            localStorage.setItem('user',JSON.stringify(res.data.user));
             this.props.onSuccess();
 
         }

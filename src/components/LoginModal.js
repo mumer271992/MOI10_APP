@@ -48,8 +48,9 @@ class LoginModal extends React.Component {
         console.log("Login Response");
         console.log(res);
         if(true){
-            this.props.dispatch(login(res.data.token));
+            this.props.dispatch(login({uid: res.data.token, user: res.data.user}));
             localStorage.setItem('auth_token',res.data.token);
+            localStorage.setItem('user',JSON.stringify(res.data.user));
             console.log(this.props);
             this.props.onSuccess();
         }
@@ -60,6 +61,7 @@ class LoginModal extends React.Component {
         if(true){
             this.props.dispatch(login(res.data.token));
             localStorage.setItem('auth_token',res.data.token);
+            localStorage.setItem('user',JSON.stringify(res.data.user));
             console.log(this.props);
             this.props.onSuccess();
         }
@@ -82,6 +84,7 @@ class LoginModal extends React.Component {
                     if(true){
                         this.props.dispatch(login(res.data.token));
                         localStorage.setItem('auth_token',res.data.token);
+                        localStorage.setItem('user',JSON.stringify(res.data.user));
                         console.log(this.props);
                         this.props.onSuccess();
                     }
@@ -125,12 +128,14 @@ class LoginModal extends React.Component {
                                 <input type="email" className="form-control" id="email" placeholder="Email" 
                                     value={this.state.email}
                                     onChange={this.emailChangeHandler}
+                                    required
                                 />
                                 </div>
                                 <div className="form-group">
                                 <input type="password" className="form-control" id="password" placeholder="password"
                                     value={this.state.value}
                                     onChange={this.passwordChangeHandler}
+                                    required
                                 />
                                 </div>
                                 <button type="submit" className="btn btn-success no-border login_button full-width bg-darkblue">

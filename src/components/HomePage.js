@@ -132,6 +132,7 @@ class HomePage extends React.Component {
 }
 const mapStateToProps = (state, props) => ({
     uid: state.auth && state.auth.uid ? state.auth.uid : undefined,
+    user: state.auth && state.auth.user ? state.auth.user : undefined,
     lists: state.lists ? state.lists : []
 });
 

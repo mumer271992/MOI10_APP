@@ -130,3 +130,23 @@ button:disabled {
   color: #ffffff;
   text-decoration: none;
 }
+.fa-lg{
+  font-size: 30px;
+  transition: all 0.1s ease-in;
+}
+.fa-lg:hover{
+  font-size: 32px;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px 1px lightgrey;
+  box-sizing: border-box;
+}
+.white{
+  color: #ffffff;
+}
+.green{
+  color: #5cb85c;
+}
+.red{
+  color: red;
+}
