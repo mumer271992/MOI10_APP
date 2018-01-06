@@ -59,7 +59,7 @@ class LoginModal extends React.Component {
         console.log("Facebook Login");
         console.log(res);
         if(true){
-            this.props.dispatch(login(res.data.token));
+            this.props.dispatch(login({uid: res.data.token, user: res.data.user}));
             localStorage.setItem('auth_token',res.data.token);
             localStorage.setItem('user',JSON.stringify(res.data.user));
             console.log(this.props);
@@ -82,7 +82,7 @@ class LoginModal extends React.Component {
                     console.log("Facebook Login");
                     console.log(res);
                     if(true){
-                        this.props.dispatch(login(res.data.token));
+                        this.props.dispatch(login({uid: res.data.token, user: res.data.user}));
                         localStorage.setItem('auth_token',res.data.token);
                         localStorage.setItem('user',JSON.stringify(res.data.user));
                         console.log(this.props);
