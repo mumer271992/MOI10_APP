@@ -122,7 +122,9 @@ class LoginModal extends React.Component {
                 <Modal.Body>
                     <div className="card">
                         <div className="card-body">
-                            <h2 className="card-title centered">Login</h2>
+                            <h2 className="card-title centered">
+                                Login
+                            </h2>
                             <form className="form" onSubmit={this.loginApp}>
                                 <div className="form-group">
                                 <input type="email" className="form-control" id="email" placeholder="Email" 
