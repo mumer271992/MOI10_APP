@@ -1,6 +1,6 @@
 const defaultAuthState = {
   uid: localStorage.getItem('auth_token'),
-  user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {}
+  user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') || {}) : {}
 } || {}
 export default (state = defaultAuthState, action) => {
   switch (action.type) {
