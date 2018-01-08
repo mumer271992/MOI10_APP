@@ -241,6 +241,12 @@ class ListPage extends React.Component {
     }
 
     orderListItems = (input_item) =>{
+        // input_item.items = input_item.items.map((item) => {
+        //     if(!item.votes){
+        //         item.votes = 0;
+        //     }
+        //     return item;
+        // });
         let sortedItems = input_item.items.sort((a, b)=> {
             return a.votes < b.votes ? 1 : -1;
         });
