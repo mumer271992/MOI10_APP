@@ -47,8 +47,7 @@ class AddListItemModal extends React.Component {
                 name: this.state.name,
                 url: this.state.url,
                 description: this.state.description,
-                list_id: this.props.listId,
-                votes: 0
+                list_id: this.props.listId
             },
             config
         )
