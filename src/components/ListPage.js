@@ -273,7 +273,7 @@ class ListPage extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-9">
+                        <div className="col-md-12">
                             {
                                 this.state.item.items.map((item) => (
                                     <ListItem 
@@ -284,7 +284,7 @@ class ListPage extends React.Component {
                                 ))
                             }
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-0">
                         </div>
                     </div>
                     <OptionModal

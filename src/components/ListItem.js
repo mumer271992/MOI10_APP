@@ -24,14 +24,16 @@ const ListItem = (props) => (
                 </span>
             </div>                        
         </div>
+        <div className="col-md-2">
+        <h1>{props.item.votes}</h1>
+        </div>
         <div className="col-md-8">
             <div>
                 <h2>{props.item.name}</h2>
                 <p>{props.item.description}</p>
             </div>
         </div>
-        <div className="col-md-3">
-        </div>
+        
     </div>
 );
 
