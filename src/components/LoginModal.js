@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Connect, connect } from 'react-redux';
 import { login } from '../actions/auth';
 import { Modal, Button } from 'react-bootstrap';
+import { get, post } from '../helpers/axiosHelper';
 
 class LoginModal extends React.Component {
     state = {
@@ -31,16 +32,24 @@ class LoginModal extends React.Component {
     loginApp = (e) => {
         e.preventDefault();
         console.log(this.state);
-        axios.post(
-            'http://api.moi10.com/auth/login',
-            {
-                email: this.state.email,
-                password: this.state.password
-            }
-        )
+        // axios.post(
+        //     'http://api.moi10.com/auth/login',
+        //     {
+        //         email: this.state.email,
+        //         password: this.state.password
+        //     }
+        // )
+        // .then(this._handleLoginRespose)
+        // .catch((err)=> {
+        //     console.log("Error:", err);
+        // });
+        post('/auth/login', {
+            email: this.state.email,
+            password: this.state.password
+        })
         .then(this._handleLoginRespose)
         .catch((err)=> {
-            console.log("Error:", err);
+            console.log("Error: ", err);
         });
     }
 

@@ -13,6 +13,7 @@ import OptionModal from '../components/OptionModal';
 import InfoModal from '../components/InfoModal';
 
 class ListPage extends React.Component {
+    keys = [];
     constructor(props){
         super(props);
         this.state.list_id = props.match.params.id;
@@ -28,6 +29,8 @@ class ListPage extends React.Component {
         axios.get(url)
         .then((res) => {
             console.log(res.data);
+            //this.keys = Object.keys(res.data.words_list);
+            this.keys = this.filterTopKeywords(res.data.words_list);
             this.setState(()=> ({
                 item: this.orderListItems(res.data)
             }));
@@ -159,7 +162,8 @@ class ListPage extends React.Component {
         showInfoModal: false,
         selectedItemId: '',
         info: '',
-        loading: false
+        loading: false,
+        keywordsList: []
     }
     onYes = () => {
         this.showAddItemModal();
@@ -258,6 +262,18 @@ class ListPage extends React.Component {
         return item;
     }
 
+    filterTopKeywords(wordsMap){
+        let topKeywords = [];
+        let sortedKeys = [];
+        if(wordsMap){
+            let keys = Object.keys(wordsMap);
+            sortedKeys = keys.sort((a, b) => {
+                return wordsMap[a] < wordsMap[b] ? 1 : -1;
+            });
+        }
+        return sortedKeys;
+    }
+
     render() {
         return (
             <div>
@@ -293,6 +309,13 @@ class ListPage extends React.Component {
                         </div>
                         <div className="col-md-0">
                         </div>
+                    </div>
+                    <div className="row">
+                            {
+                                this.keys.map((key)=> (
+                                    <p key={key}>{key}: {this.state.item.words_list[key]}</p>
+                                ))
+                            }
                     </div>
                     <OptionModal
                             show={this.state.showOptionModal}
