@@ -8,14 +8,18 @@ import SignupModal from '../components/SignupModal';
 import axios from 'axios';
 import { setLists, addList } from '../actions/lists';
 import { history } from '../routers/AppRouter';
+import { get } from '../helpers/axiosHelper';
 
 class HomePage extends React.Component {
     state = {
         showAddListModal: false,
         showAddListItemModal: false,
         showLoginModal: false,
-        showSignupModal: false
+        showSignupModal: false,
+        filterredDictionary: []
     }
+
+    filterredDictionary = [];
 
     openAddListModal = (e) => {
         this.setState(() => ({
@@ -78,7 +82,15 @@ class HomePage extends React.Component {
             console.log("Lists fetched");
             console.log(res.data);
             this.props.dispatch(setLists(res.data));
-        })
+        });
+        get('/dictionary').then((res)=> {
+            console.log("Dictionary");
+            console.log(res.data);
+            this.filterredDictionary = this.filterTopKeywords(res.data);
+            this.setState(()=> ({
+                filterredDictionary: this.filterredDictionary
+            }));
+        });
     }
 
     close = () => {
@@ -89,6 +101,16 @@ class HomePage extends React.Component {
             showSignupModal: false
         }));
       }
+    filterTopKeywords(dictionary){
+        let topKeywords = [];
+        let sortedKeys = [];
+        if(dictionary && dictionary.length){
+            sortedKeys = dictionary.sort((a, b) => {
+                return a.count < b.count ? 1 : -1;
+            });
+        }
+        return sortedKeys;
+    }
 
     render() {
         return (
@@ -106,6 +128,17 @@ class HomePage extends React.Component {
                                 className="btn btn-primary d-block action-button full-width bg-darkblue add_list_button"
                                 onClick={this.addNewList}
                             >New List</button>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            {
+                                this.state.filterredDictionary.map((word)=> (
+                                    <p key={word.id}>{word.word}: frequency: {word.count}, 
+                                        score: {Math.round(word.score)} 
+                                    </p>
+                                ))
+                            }
                         </div>
                     </div>
                     <LoginModal 
