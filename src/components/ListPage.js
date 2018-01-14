@@ -265,6 +265,7 @@ class ListPage extends React.Component {
     filterTopKeywords(wordsMap){
         let topKeywords = [];
         let sortedKeys = [];
+        
         if(wordsMap){
             let keys = Object.keys(wordsMap);
             sortedKeys = keys.sort((a, b) => {
