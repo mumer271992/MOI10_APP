@@ -268,7 +268,7 @@ class ListPage extends React.Component {
         if(wordsMap){
             let keys = Object.keys(wordsMap);
             sortedKeys = keys.sort((a, b) => {
-                return wordsMap[a].count < wordsMap[b].count ? 1 : -1;
+                return wordsMap[a].word_score < wordsMap[b].word_score ? 1 : -1;
             });
         }
         return sortedKeys;
@@ -314,7 +314,8 @@ class ListPage extends React.Component {
                             {
                                 this.keys.map((key)=> (
                                     <p key={key}>{key}: frequency: {this.state.item.words_list[key].count}, 
-                                        score: {Math.round(this.state.item.words_list[key].score)} 
+                                        score: {Math.round(this.state.item.words_list[key].score)} ,
+                                        word score: {Math.round(this.state.item.words_list[key].word_score)}
                                     </p>
                                 ))
                             }
