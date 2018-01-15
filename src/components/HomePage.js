@@ -106,7 +106,7 @@ class HomePage extends React.Component {
         let sortedKeys = [];
         if(dictionary && dictionary.length){
             sortedKeys = dictionary.sort((a, b) => {
-                return a.count < b.count ? 1 : -1;
+                return a.rank < b.rank ? 1 : -1;
             });
         }
         return sortedKeys;
@@ -134,8 +134,9 @@ class HomePage extends React.Component {
                         <div className="col-md-12">
                             {
                                 this.state.filterredDictionary.map((word)=> (
-                                    <p key={word.id}>{word.word}: frequency: {word.count}, 
-                                        score: {Math.round(word.score)} 
+                                    <p key={word.id}>{word.word}: frequency: {word.count} , 
+                                        score: {Math.round(word.score)} ,
+                                        rank: {word.rank}
                                     </p>
                                 ))
                             }
