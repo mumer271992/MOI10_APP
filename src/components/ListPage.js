@@ -316,6 +316,7 @@ class ListPage extends React.Component {
                                 this.keys.map((key)=> (
                                     <p key={key}>{key}: frequency: {this.state.item.words_list[key].count}, 
                                         score: {Math.round(this.state.item.words_list[key].score)} ,
+                                        rank: {this.state.item.words_list[key].rank},
                                         word score: {Math.round(this.state.item.words_list[key].word_score)}
                                     </p>
                                 ))
