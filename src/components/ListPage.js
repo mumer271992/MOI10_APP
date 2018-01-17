@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import ListItem from '../components/ListItem';
 import axios from 'axios';
@@ -14,6 +15,7 @@ import InfoModal from '../components/InfoModal';
 
 class ListPage extends React.Component {
     keys = [];
+    relevent_items = [];
     constructor(props){
         super(props);
         this.state.list_id = props.match.params.id;
@@ -30,6 +32,7 @@ class ListPage extends React.Component {
         .then((res) => {
             console.log(res.data);
             //this.keys = Object.keys(res.data.words_list);
+            this.relevent_items = res.data.relevent_lists;
             this.keys = this.filterTopKeywords(res.data.words_list);
             this.setState(()=> ({
                 item: this.orderListItems(res.data)
@@ -259,6 +262,7 @@ class ListPage extends React.Component {
         console.log(sortedItems);
         let item = input_item;
         item.items = sortedItems;
+        console.log(item);
         return item;
     }
 
@@ -309,6 +313,18 @@ class ListPage extends React.Component {
                             }
                         </div>
                         <div className="col-md-0">
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h3>Related Lists Recomended for you</h3>
+                        </div>
+                        <div className="col-md-12">
+                            {
+                                this.relevent_items.map((item) => (
+                                    <p key={item.id}><Link to={`/list/${item.id}`}>{item.name}</Link></p>
+                                ))
+                            }
                         </div>
                     </div>
                     <div className="row">
