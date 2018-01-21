@@ -327,17 +327,6 @@ class ListPage extends React.Component {
                             }
                         </div>
                     </div>
-                    <div className="row">
-                            {
-                                this.keys.map((key)=> (
-                                    <p key={key}>{key}: frequency: {this.state.item.words_list[key].count}, 
-                                        score: {Math.round(this.state.item.words_list[key].score)} ,
-                                        rank: {this.state.item.words_list[key].rank},
-                                        word score: {Math.round(this.state.item.words_list[key].word_score)}
-                                    </p>
-                                ))
-                            }
-                    </div>
                     <OptionModal
                             show={this.state.showOptionModal}
                             close={this.close}

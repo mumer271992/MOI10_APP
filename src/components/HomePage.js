@@ -130,18 +130,7 @@ class HomePage extends React.Component {
                             >New List</button>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            {
-                                this.state.filterredDictionary.map((word)=> (
-                                    <p key={word.id}>{word.word}: frequency: {word.count} , 
-                                        score: {Math.round(word.score)} ,
-                                        rank: {word.rank}
-                                    </p>
-                                ))
-                            }
-                        </div>
-                    </div>
+                    
                     <LoginModal 
                         show={this.state.showLoginModal}
                         close={this.close}

@@ -50,6 +50,12 @@ class LoginModal extends React.Component {
         .then(this._handleLoginRespose)
         .catch((err)=> {
             console.log("Error: ", err);
+            if(err.response.data.error){
+                let error = err.response.data.error;
+                this.setState(() => ({
+                    error: err.response.data.error
+                }));
+            }
         });
     }
 
@@ -148,6 +154,7 @@ class LoginModal extends React.Component {
                                     onChange={this.passwordChangeHandler}
                                     required
                                 />
+                                <p className="red">{this.state.error}</p>
                                 </div>
                                 <button type="submit" className="btn btn-success no-border login_button full-width bg-darkblue">
                                 Log me in
