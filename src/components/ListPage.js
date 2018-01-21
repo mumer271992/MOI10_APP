@@ -317,7 +317,7 @@ class ListPage extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <h3>Related Lists Recomended for you</h3>
+                            {this.relevent_items.length && <h3>Related Lists Recomended for you</h3>}
                         </div>
                         <div className="col-md-12">
                             {
