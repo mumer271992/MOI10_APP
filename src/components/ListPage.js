@@ -272,10 +272,11 @@ class ListPage extends React.Component {
         
         if(wordsMap){
             let keys = Object.keys(wordsMap);
-            sortedKeys = keys.sort((a, b) => {
-                return wordsMap[a].word_score < wordsMap[b].word_score ? 1 : -1;
-            });
+            if(keys.length > 20){
+                sortedKeys = keys.slice(0,20);
+            }
         }
+        console.log(sortedKeys);
         return sortedKeys;
     }
 
@@ -325,6 +326,35 @@ class ListPage extends React.Component {
                                     <p key={item.id}><Link to={`/list/${item.id}`}>{item.name}</Link></p>
                                 ))
                             }
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h3>Top 20 keywords</h3>
+                            <table className="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th>Word</th>
+                                        <th>Frequency</th>
+                                        <th>Rank</th>
+                                        <th>Score</th>
+                                        <th>Word Score</th>
+                                    </tr>
+                                    {
+                                        this.keys.map((item) => {
+                                            return (
+                                                <tr key={item}>
+                                                    <td>{item}</td> 
+                                                    <td>{this.state.item.words_list[item].count}</td>
+                                                    <td>{this.state.item.words_list[item].rank}</td>
+                                                    <td>{Math.round(this.state.item.words_list[item].score)}</td>
+                                                    <td>{Math.round(this.state.item.words_list[item].word_score)}</td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                    </tbody>
+                            </table>
                         </div>
                     </div>
                     <OptionModal
