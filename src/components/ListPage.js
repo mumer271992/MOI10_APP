@@ -268,11 +268,14 @@ class ListPage extends React.Component {
 
     filterTopKeywords(wordsMap){
         let topKeywords = [];
-        let sortedKeys = [];
-        
+        //let sortedKeys = [];
+        let keys = Object.keys(wordsMap);
+        let sortedKeys = keys.sort((a, b) => {
+            return wordsMap[a].word_score < wordsMap[b].word_score ? 1 : -1;
+        });
         if(wordsMap){
-            let keys = Object.keys(wordsMap);
-            if(keys.length > 20){
+            //let keys = Object.keys(wordsMap);
+            if(sortedKeys.length > 20){
                 sortedKeys = keys.slice(0,20);
             }
         }
