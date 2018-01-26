@@ -65,24 +65,23 @@ class Header extends React.Component{
       <div>
         <header className="header">
           <div className="row">
-            <div className="col-md-3">
-            <h1><Link to="/">MOI10.com</Link></h1>
+            <div className="col-md-6">
+              <h1 className="i-b"><Link to="/">MOI 10</Link></h1>
+              <p className="i-b p-l p-r no-m">List of the Most <br/>Important Things</p>
             </div>
             <div className="col-md-3">
-            <h1>Most Important 10</h1>
-            </div>
-            <div className="col-md-4">
-              <form>
+              <form className="form">
                 <div className="form-group">
-                  <input type="text" className="form-control" placeholder="search" />
+                  <input type="text" className="form-control" placeholder="Search" />
                 </div>
+                <span className="glyphicon glyphicon-search embeded-search-icon"></span>
               </form>
             </div>
-            <div className="col-md-2">
-              { !this.props.uid ? 
-                <button className="btn btn-success no-border" onClick={this.openLoginModal}>Login</button> : 
-                <button className="btn btn-success no-border" onClick={this.logout}>Logout</button>
-              }
+            <div className="col-md-3">
+              <div className="action-section">
+                <button className="btn btn-primary"><span className="glyphicon glyphicon-align-left"></span>New List</button>
+                <button className="btn btn-primary transparent-button"><span className="glyphicon glyphicon-plus"></span>Add Item to List</button>
+              </div>
             </div>
           </div>
         </header>

@@ -17,9 +17,31 @@
 .button--secondary {
   background: #888;
 }
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+///////////////////////// Override Bootstrap Button ////////////////////////////////////////////////////////
 
 .btn{
   line-height: 2.5;
-  padding: 0px 12px;
+  padding: 0px 24px;
   font-size: 18px;
+}
+.btn-primary{
+  color: #fff;
+  background-color: $secondry;
+  border-color: $secondry;
+}
+.btn-primary:hover{
+  background-color: $secondry-hover;
+  border-color: $secondry-hover;
+}
+.transparent-button{
+  background: transparent;
+  border-color: $grey;
 }

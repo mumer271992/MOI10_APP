@@ -1,5 +1,5 @@
 .header {
-  background: $dark-blue;
+  background: $primary;
   color: white;
   text-decoration: none;
   padding: 16px 1.8rem;
@@ -7,11 +7,29 @@
     margin-top: 0px;
     margin-bottom: 0px;
   }
+  .form{
+    width: 100%;
+    max-width: 30rem;
+    float: right;
+  }
   .form-group{
     margin-bottom: 0px;
   }
-  button{
-    width: 40%;
+  .action-section > *{
+    margin: 0px 1rem;
+  }
+  .action-section span {
+    margin-right: 10px;
+  }
+  .embeded-search-icon{
+    position: absolute;
+    top:16px;
+    right: 24px;
+    color: lightgrey;
+    cursor: pointer;
+  }
+  .form-group input {
+    padding-right: 32px;
   }
 }
 
