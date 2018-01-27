@@ -1,0 +1,45 @@
+.list-item{
+    border: 1px solid $border-color;
+    border-radius: 12px;
+    margin: 4rem 0px;
+    padding: 0px;
+    .item-info-section > span{
+        margin: 0px 2rem;
+    }
+    .vote-panel{
+        font-size: $xl-size;
+        text-align: center;
+        border-right: 1px solid $border-color;
+        line-height: 1.2;
+        color: #fff;
+        div{
+            padding: 1rem 0px;
+        }
+        .total-votes{
+            color: #000000;
+            font-size: $l-size !important;
+            i {
+                font-size: 22px;
+            }
+        }
+    }
+    .vote-panel > i {
+        margin: 0 5px;
+    }
+    .info-panel{
+        padding: 2rem 4rem;
+        h2{
+            margin-top: 0px;
+        }
+    }
+    .fa-circle{
+        color: $lightgrey;
+    }
+    .fa-lg{
+        font-size: 30px;
+    }
+    .fa-lg:hover{
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+}

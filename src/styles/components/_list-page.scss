@@ -2,3 +2,54 @@
     width: 80%;
     margin: 10px auto;
 }
+.right-section {
+    padding: 3rem 6rem;
+}
+.list-items{
+    margin: 8rem 0px;
+}
+.listing-section{
+    padding: 5rem 0px;
+}
+.list-info{
+    border-bottom: 0px;
+    .actions{
+        a:first-child{
+            margin: 0px 2.5rem 0px 0px;
+        }
+        a:last-child{
+            margin: 0px;
+        }
+    }
+}
+.popular-lists{
+    border-bottom: 0px;
+    .popular-list{
+        padding: 1rem 0px;
+        p{
+            margin-bottom: 0px;
+        }
+        .popular-list-name{
+            color: $secondry;
+        }
+        .popular-list-comments{
+            color: grey;
+        }
+    }
+}
+.top-contributors{
+    
+    .contributor{
+        border: 0px;
+        border-bottom: 1px solid #dbdbdd;
+        border-style: dashed;
+        padding: 5px;
+        p{
+            margin-bottom: 0px;
+            color: grey;
+        }
+        .name{
+            color: $secondry;
+        }
+    }
+}

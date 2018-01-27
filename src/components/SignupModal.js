@@ -110,28 +110,28 @@ class SignupModal extends React.Component {
                             <h3 className="card-title">Sign Up</h3>
                             <form onSubmit={this.submitSignupRequest}>
                                 <div className="form-group">
-                                <label for="name">Name</label>
+                                <label>Name</label>
                                 <input type="text" className="form-control" id="name" placeholder="Enter Full Name" 
                                     value={this.state.name}
                                     onChange={this.nameChangeHandler} 
                                 />
                                 </div>
                                 <div className="form-group">
-                                <label for="email">Email</label>
+                                <label>Email</label>
                                 <input type="email" className="form-control" id="email" placeholder="Enter Email"
                                     value={this.state.email}
                                     onChange={this.emailChangeHandler}
                                 />
                                 </div>
                                 <div className="form-group">
-                                <label for="password">Password</label>
+                                <label>Password</label>
                                 <input type="password" className="form-control" id="password" placeholder="Password"
                                     value={this.state.password}
                                     onChange={this.passwordChangeHandler}
                                 />
                                 </div>
                                 <div className="form-group">
-                                <label for="password">Confirm Password</label>
+                                <label>Confirm Password</label>
                                 <input type="password" className="form-control" id="password" placeholder="Confirm Password"
                                     value={this.state.confirmPassword}
                                     onChange={this.confirmPasswordChnageHandler}

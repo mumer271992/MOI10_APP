@@ -156,7 +156,7 @@ class LoginModal extends React.Component {
                                 />
                                 <p className="red">{this.state.error}</p>
                                 </div>
-                                <button type="submit" className="btn btn-success no-border login_button full-width bg-darkblue">
+                                <button type="submit" className="btn btn-primary no-border full-width">
                                 Log me in
                                 </button>
                             </form>

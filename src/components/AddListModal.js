@@ -2,14 +2,18 @@ import React from 'react';
 // import Modal from 'react-modal';
 import { Modal, Button } from 'react-bootstrap';
 import { addList } from '../actions/lists';
+import { setList } from '../actions/list';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
 class AddListModal extends React.Component {
     state = {
         name: '',
-        description: ''
+        description: '',
+        loading: false,
+        success: false
     }
+    loading = false;
     titleChangeHandler = (e) => {
        e.persist();
        this.setState(() => ({
@@ -34,6 +38,9 @@ class AddListModal extends React.Component {
             }
         }
         console.log(config);
+        this.setState(()=> ({
+            loading: true
+        }));
         axios.post(
             'http://api.moi10.com/list/create',
             this.state,
@@ -47,11 +54,19 @@ class AddListModal extends React.Component {
     _handleAddList = (res) => {
         if(res && res.data){
             console.log(res.data);
-            this.state = {
-                name: '',
-                description: ''
-            }
-            this.props.onSuccess(res.data);
+            //this.props.dispatch(setList(res.data));
+            this.setState(() => ({
+                success: true
+            }));
+            setTimeout(() => {
+                this.state = {
+                    name: '',
+                    description: '',
+                    loading: false,
+                    success: false
+                }
+                this.props.onSuccess(res.data);
+            }, 3000);
         }
     }
     render(){
@@ -62,31 +77,45 @@ class AddListModal extends React.Component {
                     onHide={this.props.close}
                 >
                     <Modal.Body>
-                        <h2>New List</h2>
-                        <h2>Most Important 10</h2>
-                        <form onSubmit={this.addListHandler}>
-                            <div className="form-group">
-                                <input type="text" className="form-control" id="listname" placeholder="Enter list name here.."
-                                    value={this.state.name}
-                                    onChange={this.titleChangeHandler}
-                                    required
-                                />
+                        <i className="fa fa-times cross-button" onClick={this.props.close}></i>
+                        {
+                            !this.state.loading ? (
+                                <div>
+                                <h2>New List</h2>
+                                <h4>Most Important 10</h4>
+                                <form onSubmit={this.addListHandler}>
+                                    <div className="form-group">
+                                        <input type="text" className="form-control" id="listname" placeholder="Enter list name here.."
+                                            value={this.state.name}
+                                            onChange={this.titleChangeHandler}
+                                            required
+                                        />
+                                    </div>
+                                    <h4>Most Important 10 {this.state.name}</h4>
+                                    <div className="form-group">
+                                        <textarea
+                                            rows="6"
+                                            className="form-control" 
+                                            placeholder="Optional list description goes here"
+                                            value={this.state.description}
+                                            onChange={this.descriptionChangeHandler}
+                                        >
+                                        </textarea>
+                                    </div>
+                                    <button type="submit" className="btn btn-primary">
+                                        Add New List
+                                    </button>
+                                </form>
                             </div>
-                            <h3>Most Important 10 {this.state.name}</h3>
-                            <div className="form-group">
-                                <textarea
-                                    rows="3"
-                                    className="form-control" 
-                                    placeholder="Optional list description goes here"
-                                    value={this.state.description}
-                                    onChange={this.descriptionChangeHandler}
-                                >
-                                </textarea>
-                            </div>
-                            <button type="submit" className="btn btn-success bg-darkblue">
-                                Add List
-                            </button>
-                        </form>
+                            ) : (
+                                <div className="text-center">
+                                    <div className={`circle-loader ${this.state.success ? 'load-complete' : ''}`}>
+                                        <div className={`checkmark draw ${this.state.success ? 'checkmark-show' : ''}`}></div>
+                                    </div>
+                                    <h2>New List Has Been Added Successfully</h2>
+                                </div>
+                            )
+                        }
                     </Modal.Body>
                 </Modal>
             </div>

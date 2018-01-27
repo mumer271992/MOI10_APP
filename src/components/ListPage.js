@@ -9,6 +9,7 @@ import LoginModal from '../components/LoginModal';
 import SignupModal from '../components/SignupModal';
 import AddListModal from '../components/AddListModal';
 import { addListItem } from '../actions/lists';
+import { setList , getList } from '../actions/list';
 import { history } from '../routers/AppRouter';
 import OptionModal from '../components/OptionModal';
 import InfoModal from '../components/InfoModal';
@@ -22,7 +23,16 @@ class ListPage extends React.Component {
         this.state.uid = this.state.uid ? this.state.uid : props.uid;
         this.state.user = this.state.user ? this.state.user : props.user;
         const id = props.match.params.id;
-        this.fetchCurrentList(id);
+        this.fetchCurrentList(this.props.match.params.id);
+    }
+    componentDidUpdate(){
+        console.log('Rendered');
+
+        // if(this.props.current_list && this.props.current_list.id){
+        //     // this.setState(()=> ({
+        //     //     item: this.orderListItems(this.props.current_list)
+        //     // }));
+        // }
     }
     fetchCurrentList(id){
         const url = this.state.user && this.state.user.id ? 
@@ -31,6 +41,7 @@ class ListPage extends React.Component {
         axios.get(url)
         .then((res) => {
             console.log(res.data);
+            this.props.dispatch(setList(res.data))
             //this.keys = Object.keys(res.data.words_list);
             this.relevent_items = res.data.relevent_lists;
             this.keys = this.filterTopKeywords(res.data.words_list);
@@ -171,13 +182,31 @@ class ListPage extends React.Component {
     onYes = () => {
         this.showAddItemModal();
     }
+    // componentWillReceiveProps(nextProps){
+    //     this.setState(() => ({
+    //        uid: nextProps.uid,
+    //        user: nextProps.user 
+    //     }), ()=> {
+    //         const id = nextProps.match.params.id;
+    //         this.fetchCurrentList(id);
+    //     });
+    // }
     componentWillReceiveProps(nextProps){
         this.setState(() => ({
            uid: nextProps.uid,
            user: nextProps.user 
-        }), ()=> {
-            const id = nextProps.match.params.id;
-            this.fetchCurrentList(id);
+        }), () => {
+            if(this.props.current_list && 
+                this.props.current_list.id && 
+                this.props.current_list.id === this.props.match.params.id){
+                this.setState(()=> ({
+                    item: this.orderListItems(this.props.current_list)
+                }));
+            }
+            else {
+                const id = nextProps.match.params.id;
+                this.fetchCurrentList(id);
+            }
         });
     }
     openInfoModal = (error) => {
@@ -286,116 +315,105 @@ class ListPage extends React.Component {
     render() {
         return (
             <div>
-                <Header />
-                <div className="page-content">
-                    <div className="row">
-                        <div className="col-md-9">
-                            <h1>
-                                {this.state.item.name}
-                                {this.state.loading && <span className="spinner"></span>}
-                            </h1>
-                        </div>
-                        <div className="col-md-3 list-action-buttons">
-                            <button className="btn btn-primary d-block action-button bg-darkblue add_list_button"
-                                onClick={this.showAddListModal}
-                            >New List</button>
-                            <button className="btn btn-light d-block action-button outline-darkblue add_item_button"
-                                onClick={this.showAddItemModal}
-                            >Add Item to List</button>
-                        </div>
+                <Header list_id={this.props.match.params.id}/>
+                <div className="row">
+                    <div className="col-md-1"> 
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                    <div className="col-md-7 listing-section">
+                        <h3>Most Important 10</h3>
+                        <h1>{this.state.item.name}</h1>
+                        <div className="list-items">
                             {
-                                this.state.item.items.map((item) => (
+                                this.state.item.items.map((item, index) => (
                                     <ListItem 
                                         key={item.id}
                                         item={item}
+                                        index={index}
                                         onVote = {this.voteItem}
                                     />
                                 ))
                             }
                         </div>
-                        <div className="col-md-0">
+                    </div>
+                    <div className="col-md-1">
+                    </div>
+                    <div className="col-md-3">
+                        <div className="list-info right-section border">
+                            <h3>List Information</h3>
+                            <p>All Comments: <b>500</b></p>
+                            <p>Date: <b>20 of December, 02:00 PM</b></p>
+                            <p>Category: <b>Finance</b></p>
+                            <div className="actions">
+                                <a>Share <span className="glyphicon glyphicon-share"></span></a>
+                                <a>Add to Favourite <span className="glyphicon glyphicon-heart"></span></a>
+                            </div>
+                        </div>
+                        <div className="popular-lists right-section border">
+                            <h3>Popular Lists</h3>
+                            <div className="popular-list">
+                                <p className="popular-list-name"><b>Founders of all times</b></p>
+                                <p className="popular-list-comments">360 Comments</p>
+                            </div>
+                            <div className="popular-list">
+                                <p className="popular-list-name"><b>Founders of all times</b></p>
+                                <p className="popular-list-comments">360 Comments</p>
+                            </div>
+                            <div className="popular-list">
+                                <p className="popular-list-name"><b>Founders of all times</b></p>
+                                <p className="popular-list-comments">360 Comments</p>
+                            </div>
+                            <div className="popular-list">
+                                <p className="popular-list-name"><b>Founders of all times</b></p>
+                                <p className="popular-list-comments">360 Comments</p>
+                            </div>
+                            <div className="popular-list">
+                                <p className="popular-list-name"><b>Founders of all times</b></p>
+                                <p className="popular-list-comments">360 Comments</p>
+                            </div>
+                            <div className="popular-list">
+                                <p className="popular-list-name"><b>Founders of all times</b></p>
+                                <p className="popular-list-comments">360 Comments</p>
+                            </div>
+                            <div className="popular-list">
+                                <p className="popular-list-name"><b>Founders of all times</b></p>
+                                <p className="popular-list-comments">360 Comments</p>
+                            </div>
+                            <div>
+                                <a>see more <span className="glyphicon glyphicon-chevron-down"></span></a>
+                            </div>
+                        </div>
+                        <div className="top-contributors right-section border">
+                            <h3>Top Contributters</h3>
+                            <div className="contributor">
+                                <p className="name"><b>Andrew Knight</b></p>
+                                <p>20 Lists / 800 Comments</p>                           
+                            </div>
+                            <div className="contributor">
+                                <p className="name"><b>Andrew Knight</b></p>
+                                <p>20 Lists / 800 Comments</p>                           
+                            </div>
+                            <div className="contributor">
+                                <p className="name"><b>Andrew Knight</b></p>
+                                <p>20 Lists / 800 Comments</p>                           
+                            </div>
+                            <div>
+                                <a>see more <span className="glyphicon glyphicon-chevron-down"></span></a>
+                            </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            {this.relevent_items.length && <h3>Related Lists Recomended for you</h3>}
-                        </div>
-                        <div className="col-md-12">
-                            {
-                                this.relevent_items.map((item) => (
-                                    <p key={item.id}><Link to={`/list/${item.id}`}>{item.name}</Link></p>
-                                ))
-                            }
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <h3>Top 20 keywords</h3>
-                            <table className="table table-striped">
-                                <tbody>
-                                    <tr>
-                                        <th>Word</th>
-                                        <th>Frequency</th>
-                                        <th>Rank</th>
-                                        <th>Score</th>
-                                        <th>Word Score</th>
-                                    </tr>
-                                    {
-                                        this.keys.map((item) => {
-                                            return (
-                                                <tr key={item}>
-                                                    <td>{item}</td> 
-                                                    <td>{this.state.item.words_list[item].count}</td>
-                                                    <td>{this.state.item.words_list[item].rank}</td>
-                                                    <td>{Math.round(this.state.item.words_list[item].score)}</td>
-                                                    <td>{Math.round(this.state.item.words_list[item].word_score)}</td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                    </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <OptionModal
-                            show={this.state.showOptionModal}
-                            close={this.close}
-                            yes={this.onYes}
-                            no={this.close}
-                    />
-                    <LoginModal 
-                        show={this.state.showLoginModal}
-                        close={this.close}
-                        openSignupModal={this.openSignupModal}
-                        onSuccess={this.onSuccessHandler}
-                    />
-                    <SignupModal
-                        show={this.state.showSignupModal}
-                        close={this.close}
-                        openLoginModal={this.openLoginModal} 
-                        onSuccess = {this.onSuccessHandler}
-                    />
-                    <AddListModal 
-                        show={this.state.showAddListModal}
-                        close={this.close}
-                        onSuccess={this.addListSuccessHandler}
-                    />
-                    <AddListItemModal 
-                        show={this.state.showAddItemModal}
-                        listId={this.state.item.id}
-                        listName={this.state.item.name}
-                        close={this.close}
-                        onSuccess={this.onSuccessFullAddItem}
-                    />
-                    <InfoModal
-                        show={this.state.showInfoModal}
-                        info={this.state.info}
-                        close={this.close}
-                    />
                 </div>
+                <LoginModal 
+                    show={this.state.showLoginModal}
+                    close={this.close}
+                    openSignupModal={this.openSignupModal}
+                    onSuccess={this.onSuccessHandler}
+                />
+                <SignupModal
+                    show={this.state.showSignupModal}
+                    close={this.close}
+                    openLoginModal={this.openLoginModal} 
+                    onSuccess = {this.onSuccessHandler}
+                />
             </div>
         );
     }
@@ -405,7 +423,8 @@ const mapStateToProps = (state, props) => {
     console.log("Redux state is updated!");
     return {
         uid: state.auth && state.auth.uid ? state.auth.uid : undefined,
-        user: state.auth && state.auth.user ? state.auth.user : undefined
+        user: state.auth && state.auth.user ? state.auth.user : undefined,
+        current_list: state.list
     }
 };
 export default connect(mapStateToProps)(ListPage);
