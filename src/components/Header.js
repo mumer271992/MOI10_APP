@@ -15,11 +15,14 @@ class Header extends React.Component{
     uid: '',
     list_id: '',
     currentAction: '',
+    isMobile: false,
     showLoginModal: false,
     showSignupModal: false,
     openAddItemModal: false,
     showAddListModal: false,
-    showOptionModal: false
+    showOptionModal: false,
+    showHeaderSearchBox: false,
+    showMenu: false
   }
 
   constructor(props){
@@ -50,7 +53,8 @@ class Header extends React.Component{
     console.log("User successfully Loggedin.");
     this.setState(() => ({
       showLoginModal: false,
-      showSignupModal: false
+      showSignupModal: false,
+      showMenu: false
     }));
     if(this.props.uid){
       switch(this.state.currentAction){
@@ -78,7 +82,8 @@ class Header extends React.Component{
       showSignupModal: false,
       openAddItemModal: false,
       showAddListModal: false,
-      showOptionModal: false
+      showOptionModal: false,
+      showMenu: false
     }));
   }
   showAddListModal = () => {
@@ -88,7 +93,8 @@ class Header extends React.Component{
     else{
         this.setState(() => ({
             currentAction: 'ADD_LIST',
-            showAddListModal: true
+            showAddListModal: true,
+            showMenu: false
         }));
     }
   }
@@ -100,7 +106,8 @@ class Header extends React.Component{
     else{
         this.setState(() => ({
             currentAction: 'ADD_LIST_ITEM',
-            showAddItemModal: true
+            showAddItemModal: true,
+            showMenu: false
         }));
     }
   }
@@ -109,7 +116,8 @@ class Header extends React.Component{
     console.log(new_list);
     // this.props.dispatch(addList(new_list));
     this.setState(() => ({
-        showAddListModal: false
+        showAddListModal: false,
+        showMenu: false
     }));
     console.log("Props");
     console.log(this.props);
@@ -118,11 +126,13 @@ class Header extends React.Component{
   }
   onSuccessFullAddItem = (list_item)=> {
     this.setState(()=> ({
-        showAddItemModal: false
+        showAddItemModal: false,
+        showMenu: false
     }));  
     this.setState((prevState)=> {
       return{
-          showOptionModal: true
+          showOptionModal: true,
+          showMenu: false
       }
   });
     //this.props.dispatch(addListItem(list_item));
@@ -130,31 +140,119 @@ class Header extends React.Component{
   onYes = () => {
     this.showAddItemModal();
   }
+
+  toogleSearchBar = () => {
+    this.setState(() => ({
+      showHeaderSearchBox: !this.state.showHeaderSearchBox    
+    }));
+  }
+
+  toogleMenu = () => {
+    console.log("toogle menu");
+    this.setState(() => ({
+      showMenu: !this.state.showMenu
+    }));
+  }
+  ///////////////////////////////////////////// Window Resize Listener ////////////////////////////////
+  /**
+     * Calculate & Update state of new dimensions
+     */
+    updateDimensions() {
+      if(window.innerWidth < 450) {
+          this.setState(() => ({
+              isMobile: true
+          }));
+      } else {
+          this.setState(() => ({
+              isMobile: false
+          }));
+      }
+  }
+
+  /**
+   * Add event listener
+   */
+  componentDidMount() {
+      this.updateDimensions();
+      window.addEventListener("resize", this.updateDimensions.bind(this));
+  }
+
+  /**
+   * Remove event listener
+   */
+  componentWillUnmount() {
+      window.removeEventListener("resize", this.updateDimensions.bind(this));
+  }
   render() {
     return (
       <div>
-        <header className="header">
-          <div className="row">
-            <div className="col-md-6">
-              <h1 className="i-b"><Link to="/">MOI 10</Link></h1>
-              <p className="i-b p-l p-r no-m">List of the Most <br/>Important Things</p>
-            </div>
-            <div className="col-md-3">
-              <form className="form">
-                <div className="form-group">
-                  <input type="text" className="form-control" placeholder="Search" />
+        {
+          !this.state.isMobile ? (
+            <header className="header">
+              <div className="row">
+                <div className="col-md-6">
+                  <h1 className="i-b"><Link to="/">MOI 10</Link></h1>
+                  <p className="i-b p-l p-r no-m">List of the Most <br/>Important Things</p>
                 </div>
-                <span className="glyphicon glyphicon-search embeded-search-icon"></span>
-              </form>
-            </div>
-            <div className="col-md-3">
-              <div className="action-section">
-                <button className="btn btn-primary" onClick={this.showAddListModal}><span className="glyphicon glyphicon-align-left"></span>New List</button>
-                <button className="btn btn-primary transparent-button" onClick={this.showAddItemModal}><span className="glyphicon glyphicon-plus"></span>Add Item to List</button>
+                <div className="col-md-3">
+                  <form className="form">
+                    <div className="form-group">
+                      <input type="text" className="form-control" placeholder="Search" />
+                    </div>
+                    <span className="glyphicon glyphicon-search embeded-search-icon"></span>
+                  </form>
+                </div>
+                <div className="col-md-3">
+                  <div className="action-section">
+                    <button className="btn btn-primary" onClick={this.showAddListModal}><span className="glyphicon glyphicon-align-left"></span>New List</button>
+                    <button className="btn btn-primary transparent-button" onClick={this.showAddItemModal}><span className="glyphicon glyphicon-plus"></span>Add Item to List</button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </header>
+            </header>
+          ) : (
+            <header className="header">
+              <div className="d-flex flex-row justify-content-space-between text-center">
+                <button className="btn" onClick={this.toogleMenu}><i className={`fa ${ !this.state.showMenu ? 'fa-bars' : 'fa-times'}`} aria-hidden="true"></i></button>
+                <h1 className="i-b"><Link to="/">MOI 10</Link></h1>
+                <button className="btn" onClick={this.toogleSearchBar}><i className={`fa ${ !this.state.showHeaderSearchBox ? 'fa-search' : 'fa-times'}`} aria-hidden="true"></i></button>
+              </div>
+              {
+                this.state.showHeaderSearchBox && (
+                  <form className="form">
+                    <div className="form-group">
+                      <input type="text" className="form-control" placeholder="Search" />
+                    </div>
+                    <span className="glyphicon glyphicon-search embeded-search-icon"></span>
+                  </form>
+                )
+              }
+              {
+                this.state.showMenu && (
+                  <div className="d-flex flex-column mobile-menu">
+                    <div className="menu-item">
+                      List Information
+                    </div>
+                    <div className="menu-item">
+                      Popular Lists
+                    </div>
+                    <div className="menu-item">
+                      Top Contributters
+                    </div>
+                    <div className="menu-item" onClick={this.showAddListModal}>
+                      New List 
+                      <span className="glyphicon glyphicon-align-left pull-right"></span>
+                    </div>
+                    <div className="menu-item" onClick={this.showAddItemModal}>
+                      Add Item to List
+                      <span className="glyphicon glyphicon-plus pull-right"></span>
+                    </div>
+                </div>
+                )
+              }
+            </header>
+          )
+        }
         <OptionModal
           show={this.state.showOptionModal}
           close={this.close}

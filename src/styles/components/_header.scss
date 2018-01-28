@@ -47,3 +47,68 @@
     margin: 0;
   }
 }
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 450px) {
+  .mobile-menu{
+    display: block;
+    position: absolute;
+    top: 8rem;
+    left: 0;
+    background-color: $primary;
+    z-index: 10000;
+    width: 70vw;
+    .menu-item{
+      width: 100%;
+      display: block;
+      color: #ffffff;
+      padding: 2rem 3rem;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+  .header{
+    padding: 8px 0px;
+    h1{
+      width: 60%;
+      display: block;
+      padding-top: 12px;
+    }
+    .btn:focus{
+      color: #ffffff;
+      outline: none;
+    }
+    button{
+      width: 20%;
+      font-size: 28px;
+      background-color: transparent;
+      color: #ffffff;
+    }
+    .form{
+      position: relative;
+      float: none;
+      margin-right: 0px;
+      margin: auto;
+    }
+    .embeded-search-icon{
+      position: absolute;
+      top:16px;
+      right: 12px;
+      color: lightgrey;
+      cursor: pointer;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
