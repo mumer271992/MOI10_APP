@@ -163,6 +163,7 @@ class ListPage extends React.Component {
         //history.push(`/list/${new_list.id}`);
     }
     state = {
+        isMobile: false,
         list_id: '',
         uid: '',
         user: undefined,
@@ -312,6 +313,36 @@ class ListPage extends React.Component {
         return sortedKeys;
     }
 
+    /**
+     * Calculate & Update state of new dimensions
+     */
+    updateDimensions() {
+        if(window.innerWidth < 450) {
+            this.setState(() => ({
+                isMobile: true
+            }));
+        } else {
+            this.setState(() => ({
+                isMobile: false
+            }));
+        }
+    }
+
+    /**
+     * Add event listener
+     */
+    componentDidMount() {
+        this.updateDimensions();
+        window.addEventListener("resize", this.updateDimensions.bind(this));
+    }
+
+    /**
+     * Remove event listener
+     */
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions.bind(this));
+    }
+
     render() {
         return (
             <div>
@@ -320,8 +351,8 @@ class ListPage extends React.Component {
                     <div className="col-md-1"> 
                     </div>
                     <div className="col-md-7 listing-section">
-                        <h3>Most Important 10</h3>
-                        <h1>{this.state.item.name}</h1>
+                        <h3 className={this.state.isMobile ? 'text-center' : ''}>Most Important 10</h3>
+                        <h1 className={this.state.isMobile ? 'text-center' : ''}>{this.state.item.name}</h1>
                         <div className="list-items">
                             {
                                 this.state.item.items.map((item, index) => (

@@ -11,9 +11,13 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: $m-size;
   line-height: 1.6;
+  // overflow-x: hidden;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+.row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
 .i-b{
   display: inline-block;
 }
@@ -40,6 +44,24 @@ body {
 }
 .secondry-backfround{
   color: $secondry !important;
+}
+.d-flex{
+  display: flex;
+}
+.flex-row{
+  flex-direction: row;
+}
+.flex-column{
+  flex-direction: column;
+}
+.flex-reverse-columns{
+  flex-direction: column-reverse;
+}
+.justify-content-center{
+  justify-content: center;
+}
+.justify-content-space-evenly{
+  justify-content: space-evenly;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -4,16 +4,17 @@
     margin: 4rem 0px;
     padding: 0px;
     .item-info-section > span{
-        margin: 0px 2rem;
+        
     }
     .vote-panel{
         font-size: $xl-size;
         text-align: center;
         border-right: 1px solid $border-color;
         line-height: 1.2;
+        padding: 1rem 2rem;
         color: #fff;
         div{
-            padding: 1rem 0px;
+            
         }
         .total-votes{
             color: #000000;
@@ -27,10 +28,22 @@
         margin: 0 5px;
     }
     .info-panel{
+        width: 100%;
+        position: relative;
         padding: 2rem 4rem;
         h2{
             margin-top: 0px;
         }
+        .item-info-section{
+            position: absolute;
+            bottom: 2rem;
+        }
+    }
+    .info-panel > * {
+        margin-bottom: 2rem;
+    }
+    .info-panel:last-child div{
+        margin-bottom: 0px;
     }
     .fa-circle{
         color: $lightgrey;
@@ -43,3 +56,47 @@
         box-sizing: border-box;
     }
 }
+
+//////////////////////////////////////////////////
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 450px) {
+    .list-item{
+        .vote-panel{
+            border-right: 0px;
+            border-top: 1px solid $border-color;
+            .total-votes{
+                padding-top: 10px;
+            }
+        }   
+        .info-panel{
+            padding: 4rem 4rem;
+            .item-info-section{
+                bottom: 4rem;
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+            .item-info-section:first-child {
+                margin-right: 1rem;
+            }
+            .item-info-section:last-child {
+                margin-left: 1rem;
+            }
+            p.secondry-text{
+                padding-bottom: 2rem;
+            }
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
