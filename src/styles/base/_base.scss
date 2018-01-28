@@ -8,7 +8,7 @@ html {
 
 body {
   color: #232322;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: $m-size;
   line-height: 1.6;
   // overflow-x: hidden;
@@ -35,6 +35,9 @@ body {
 }
 .border{
   border: 1px solid $border-color;
+}
+.primary-bg{
+  background-color: $secondry;
 }
 .primary-color{
   color: $secondry;

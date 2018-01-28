@@ -18,7 +18,7 @@ class Header extends React.Component{
     isMobile: false,
     showLoginModal: false,
     showSignupModal: false,
-    openAddItemModal: false,
+    showAddItemModal: false,
     showAddListModal: false,
     showOptionModal: false,
     showHeaderSearchBox: false,
@@ -80,7 +80,7 @@ class Header extends React.Component{
     this.setState(() => ({
       showLoginModal: false,
       showSignupModal: false,
-      openAddItemModal: false,
+      showAddItemModal: false,
       showAddListModal: false,
       showOptionModal: false,
       showMenu: false
@@ -243,7 +243,7 @@ class Header extends React.Component{
                       New List 
                       <span className="glyphicon glyphicon-align-left pull-right"></span>
                     </div>
-                    <div className="menu-item" onClick={this.showAddItemModal}>
+                    <div className="menu-item primary-bg" onClick={this.showAddItemModal}>
                       Add Item to List
                       <span className="glyphicon glyphicon-plus pull-right"></span>
                     </div>

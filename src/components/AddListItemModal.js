@@ -80,9 +80,6 @@ class AddListItemModal extends React.Component {
             }, 3000);
         }
     }
-    close = () => {
-        this.props.close();
-    }
     render(){
         return (
             <div>
