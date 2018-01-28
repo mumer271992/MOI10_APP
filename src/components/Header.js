@@ -33,20 +33,23 @@ class Header extends React.Component{
   }
   openLoginModal = (e) => {
     this.setState(() => ({
-      showLoginModal: true
+      showLoginModal: true,
+      showMenu: false
     }));
   }
   openSignupModal = (e) => {
     console.log("Open Signup MOdal");
     this.setState(() => ({
       showLoginModal: false,
-      showSignupModal: true
+      showSignupModal: true,
+      showMenu: false
     }));
   }
   openLoginModal = () => {
     this.setState(() => ({
       showLoginModal: true,
-      showSignupModal: false
+      showSignupModal: false,
+      showMenu: false
     }));
   }
   onSuccessHandler = () => {

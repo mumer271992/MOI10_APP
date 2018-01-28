@@ -105,6 +105,7 @@ class SignupModal extends React.Component {
         return (
             <Modal show={this.props.show} onHide={this.props.close}>
                 <Modal.Body>
+                    <i className="fa fa-times cross-button" onClick={this.props.close}></i>
                     <div className="card">
                         <div className="card-body">
                             <h3 className="card-title">Sign Up</h3>

@@ -135,6 +135,7 @@ class LoginModal extends React.Component {
             <Modal show={this.props.show} onHide={this.props.close}>
                 
                 <Modal.Body>
+                    <i className="fa fa-times cross-button" onClick={this.props.close}></i>
                     <div className="card">
                         <div className="card-body">
                             <h2 className="card-title centered">
