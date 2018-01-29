@@ -110,6 +110,7 @@ class Header extends React.Component{
         this.setState(() => ({
             currentAction: 'ADD_LIST_ITEM',
             showAddItemModal: true,
+            showOptionModal: false,
             showMenu: false
         }));
     }
