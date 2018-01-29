@@ -120,7 +120,7 @@ class HomePage extends React.Component {
                     <div className="row">
                         <div className="col-md-10">
                             <ul className="list-group">
-                                {this.props.lists.length && this.props.lists.map(list => (<li className="list-group-item" key={list.id}><Link to={`/list/${list.id}`}>{list.name}</Link></li>))}
+                                {this.props.lists.length && this.props.lists.map(list => (<li className="list-group-item" key={list.id}><Link to={`/list/${list.slug}`}>{list.name}</Link></li>))}
                             </ul>
                         </div>
                         <div className="col-md-2">

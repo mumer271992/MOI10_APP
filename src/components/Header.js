@@ -124,7 +124,7 @@ class Header extends React.Component{
     }));
     console.log("Props");
     console.log(this.props);
-    history.push(`/list/${new_list.id}`);
+    history.push(`/list/${new_list.slug}`);
     //history.push(`/list/${new_list.id}`);
   }
   onSuccessFullAddItem = (list_item)=> {
@@ -281,7 +281,7 @@ class Header extends React.Component{
         />
         <AddListItemModal 
             show={this.state.showAddItemModal}
-            listId={this.state.list_id}
+            listId={this.props.current_list.id}
             listName={this.props.current_list.name}
             close={this.close}
             onSuccess={this.onSuccessFullAddItem}

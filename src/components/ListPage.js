@@ -20,10 +20,11 @@ class ListPage extends React.Component {
     constructor(props){
         super(props);
         this.state.list_id = props.match.params.id;
+        this.state.list_slug = props.match.params.slug;
         this.state.uid = this.state.uid ? this.state.uid : props.uid;
         this.state.user = this.state.user ? this.state.user : props.user;
-        const id = props.match.params.id;
-        this.fetchCurrentList(this.props.match.params.id);
+        const slug = props.match.params.slug;
+        this.fetchCurrentList(slug);
     }
     componentDidUpdate(){
         console.log('Rendered');
@@ -34,10 +35,10 @@ class ListPage extends React.Component {
         //     // }));
         // }
     }
-    fetchCurrentList(id){
+    fetchCurrentList(slug){
         const url = this.state.user && this.state.user.id ? 
-                    `http://api.moi10.com/list/fetch/${id}?user_id=${this.state.user.id}` : 
-                    `http://api.moi10.com/list/fetch/${id}`
+                    `http://api.moi10.com/list/fetch/${slug}?user_id=${this.state.user.id}` : 
+                    `http://api.moi10.com/list/fetch/${slug}`
         axios.get(url)
         .then((res) => {
             console.log(res.data);
@@ -159,12 +160,13 @@ class ListPage extends React.Component {
         }));
         console.log("Props");
         console.log(this.props);
-        this.props.history.push(`/list/${new_list.id}`);
+        this.props.history.push(`/list/${new_list.slug}`);
         //history.push(`/list/${new_list.id}`);
     }
     state = {
         isMobile: false,
         list_id: '',
+        list_slug: '',
         uid: '',
         user: undefined,
         currentAction: '',
@@ -198,15 +200,15 @@ class ListPage extends React.Component {
            user: nextProps.user 
         }), () => {
             if(this.props.current_list && 
-                this.props.current_list.id && 
-                this.props.current_list.id === this.props.match.params.id){
+                this.props.current_list.slug && 
+                this.props.current_list.slug === this.props.match.params.slug){
                 this.setState(()=> ({
                     item: this.orderListItems(this.props.current_list)
                 }));
             }
             else {
-                const id = nextProps.match.params.id;
-                this.fetchCurrentList(id);
+                const slug = nextProps.match.params.slug;
+                this.fetchCurrentList(slug);
             }
         });
     }
@@ -266,7 +268,7 @@ class ListPage extends React.Component {
                     loading: false
                 }));
                 console.log("Vote has been submitted.");
-                this.fetchCurrentList(this.props.match.params.id);
+                this.fetchCurrentList(this.props.match.params.slug);
             }
         }).catch((err) => {
             //console.log("Error: " , err);
