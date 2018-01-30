@@ -125,7 +125,7 @@ class Header extends React.Component{
     }));
     console.log("Props");
     console.log(this.props);
-    history.push(`/list/${new_list.slug}`);
+    history.push(`/${new_list.slug}`);
     //history.push(`/list/${new_list.id}`);
   }
   onSuccessFullAddItem = (list_item)=> {
