@@ -20,7 +20,7 @@ const AppRouter = () => (
         <Route path="/dashboard" component={DashboardPage} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/home" component={HomePage} />
-        <Route path="/list/:slug" component={ListPage} />
+        <Route path="/:slug" component={ListPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
