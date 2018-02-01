@@ -36,6 +36,7 @@ button:disabled {
   color: #fff;
   background-color: $secondry;
   border-color: $secondry;
+  padding: 5px 20px;
 }
 .btn-primary:hover{
   background-color: $secondry-hover;
@@ -44,4 +45,5 @@ button:disabled {
 .transparent-button{
   background: transparent;
   border-color: $grey;
+  padding: 5px 20px;
 }

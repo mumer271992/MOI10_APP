@@ -1,5 +1,6 @@
 const path = require("path");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, args) => {
     const isProduction = env === 'production';
@@ -40,7 +41,12 @@ module.exports = (env, args) => {
             ]
         },
         plugins: [
-            CSSExtract
+            CSSExtract,
+            new CopyWebpackPlugin([
+            {
+                from: path.join(__dirname, 'src', 'assets'),
+                to: path.join(__dirname, 'public', 'dist') }
+            ]),
         ],
         devtool: isProduction ? "source-map" : "inline-source-map",
         devServer: {

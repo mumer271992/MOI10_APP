@@ -353,8 +353,8 @@ class ListPage extends React.Component {
                     <div className="col-md-1"> 
                     </div>
                     <div className="col-md-7 listing-section">
-                        <h3 className={this.state.isMobile ? 'text-center' : ''}>Most Important 10</h3>
-                        <h1 className={this.state.isMobile ? 'text-center' : ''}>{this.state.item.name}</h1>
+                        <h3 className={`regular ${this.state.isMobile ? 'text-center' : ''}`}>Most Important 10</h3>
+                        <h1 className={`light ${this.state.isMobile ? 'text-center' : ''}`}>{this.state.item.name}</h1>
                         <div className="list-items">
                             {
                                 this.state.item.items.map((item, index) => (
@@ -372,17 +372,17 @@ class ListPage extends React.Component {
                     </div>
                     <div className="col-md-3">
                         <div className="list-info right-section border">
-                            <h3>List Information</h3>
+                            <p className="side-nav-heading">List Information</p>
                             <p>All Comments: <b>500</b></p>
                             <p>Date: <b>20 of December, 02:00 PM</b></p>
                             <p>Category: <b>Finance</b></p>
                             <div className="actions">
-                                <a>Share <span className="glyphicon glyphicon-share"></span></a>
-                                <a>Add to Favourite <span className="glyphicon glyphicon-heart"></span></a>
+                                <a>Share <i className="fa fa-share-alt"></i></a>
+                                <a>Add to Favourite <span className="fa fa-heart"></span></a>
                             </div>
                         </div>
                         <div className="popular-lists right-section border">
-                            <h3>Popular Lists</h3>
+                            <p className="side-nav-heading">Popular Lists</p>
                             <div className="popular-list">
                                 <p className="popular-list-name"><b>Founders of all times</b></p>
                                 <p className="popular-list-comments">360 Comments</p>
@@ -411,12 +411,12 @@ class ListPage extends React.Component {
                                 <p className="popular-list-name"><b>Founders of all times</b></p>
                                 <p className="popular-list-comments">360 Comments</p>
                             </div>
-                            <div>
-                                <a>see more <span className="glyphicon glyphicon-chevron-down"></span></a>
+                            <div className="see_more">
+                                <a>see more <span className="fa fa-angle-down"></span></a>
                             </div>
                         </div>
                         <div className="top-contributors right-section border">
-                            <h3>Top Contributters</h3>
+                            <p className="side-nav-heading">Top Contributters</p>
                             <div className="contributor">
                                 <p className="name"><b>Andrew Knight</b></p>
                                 <p>20 Lists / 800 Comments</p>                           
@@ -429,8 +429,8 @@ class ListPage extends React.Component {
                                 <p className="name"><b>Andrew Knight</b></p>
                                 <p>20 Lists / 800 Comments</p>                           
                             </div>
-                            <div>
-                                <a>see more <span className="glyphicon glyphicon-chevron-down"></span></a>
+                            <div className="see_more">
+                                <a>see more <span className="fa fa-angle-down"></span></a>
                             </div>
                         </div>
                     </div>

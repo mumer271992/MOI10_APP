@@ -195,21 +195,21 @@ class Header extends React.Component{
             <header className="header">
               <div className="row">
                 <div className="col-md-6">
-                  <h1 className="i-b"><Link to="/">MOI 10</Link></h1>
-                  <p className="i-b p-l p-r no-m">List of the Most <br/>Important Things</p>
+                  <h1 className="i-b"><Link to="/"><img src="../dist/Logo.png" className="logo" /></Link></h1>
+                  <p className="i-b p-l p-r no-m desc">List of the Most <br/>Important Things</p>
                 </div>
                 <div className="col-md-3">
                   <form className="form">
                     <div className="form-group">
-                      <input type="text" className="form-control" placeholder="Search" />
+                      <input type="text" className="form-control search_bar" placeholder="Search" />
                     </div>
                     <span className="glyphicon glyphicon-search embeded-search-icon"></span>
                   </form>
                 </div>
                 <div className="col-md-3">
                   <div className="action-section">
-                    <button className="btn btn-primary" onClick={this.showAddListModal}><span className="glyphicon glyphicon-align-left"></span>New List</button>
-                    <button className="btn btn-primary transparent-button" onClick={this.showAddItemModal}><span className="glyphicon glyphicon-plus"></span>Add Item to List</button>
+                    <button className="btn btn-primary add_list_button" onClick={this.showAddListModal}><span className="glyphicon glyphicon-align-left"></span>New List</button>
+                    <button className="btn btn-primary transparent-button add_item_button" onClick={this.showAddItemModal}><span className="glyphicon glyphicon-plus"></span>Add Item to List</button>
                   </div>
                 </div>
               </div>
@@ -218,7 +218,7 @@ class Header extends React.Component{
             <header className="header">
               <div className="d-flex flex-row justify-content-space-between text-center">
                 <button className="btn" onClick={this.toogleMenu}><i className={`fa ${ !this.state.showMenu ? 'fa-bars' : 'fa-times'}`} aria-hidden="true"></i></button>
-                <h1 className="i-b"><Link to="/">MOI 10</Link></h1>
+                <h1 className="i-b"><Link to="/"><img src="../dist/Logo.png" className="logo" /></Link></h1>
                 <button className="btn" onClick={this.toogleSearchBar}><i className={`fa ${ !this.state.showHeaderSearchBox ? 'fa-search' : 'fa-times'}`} aria-hidden="true"></i></button>
               </div>
               {

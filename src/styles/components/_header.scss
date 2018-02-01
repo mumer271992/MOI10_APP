@@ -3,6 +3,9 @@
   color: white;
   text-decoration: none;
   padding: 16px 1.8rem;
+  .logo{
+    
+  }
   h1{
     margin-top: 0px;
     margin-bottom: 0px;
@@ -17,6 +20,8 @@
   }
   .action-section > *{
     margin: 0px 1rem;
+    font-size: 14px;
+    font-weight: bold;
   }
   .action-section span {
     margin-right: 10px;
@@ -30,6 +35,25 @@
   }
   .form-group input {
     padding-right: 32px;
+  }
+  .add_list_button:hover{
+    background-color: #499efb;
+    border-color: #499efb;
+  }
+  .add_item_button:hover{
+    background-color: #286ec0;
+    border-color: #286ec0;
+  }
+  .search_bar{
+    border: 0px;
+  }
+  .search_bar:hover{
+    border: 2px solid #286ec0;
+  }
+  .desc{
+    font-size: 14px;
+    font-weight: normal;
+    padding-left: 2rem;
   }
 }
 

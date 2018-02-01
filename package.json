@@ -23,6 +23,7 @@
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1",
     "bootstrap": "4.0.0-alpha.6",
+    "copy-webpack-plugin-advanced": "^1.0.3",
     "css-loader": "0.28.4",
     "express": "4.15.4",
     "extract-text-webpack-plugin": "3.0.0",
@@ -51,6 +52,7 @@
     "webpack": "3.1.0"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^4.3.1",
     "cross-env": "5.0.5",
     "dotenv": "4.0.0",
     "enzyme": "2.9.1",

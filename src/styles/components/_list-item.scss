@@ -13,13 +13,26 @@
         line-height: 1.2;
         padding: 1rem 2rem;
         color: #fff;
-        div{
-            
+        .vote_button{
+            margin-bottom: 0.25rem;
+            margin-top: 0.25rem;
+        }
+        .vote_button:hover{
+            .fa-circle{
+                color: #286ec0
+            }
+        }
+        .fa-angle-up{
+            top: -2px;
+        }
+        .fa-angle-down{
+            top: 2px;
         }
         .total-votes{
+            font-size: 21px;
+            font-weight: bold;
             color: #000000;
-            font-size: $l-size !important;
-            i {
+            i{
                 font-size: 22px;
             }
         }
@@ -27,6 +40,7 @@
     .vote-panel > i {
         margin: 0 5px;
     }
+
     .info-panel{
         width: 100%;
         position: relative;
@@ -37,6 +51,12 @@
         .item-info-section{
             position: absolute;
             bottom: 2rem;
+            font-size: 14px;
+            font-weight: normal;
+        }
+        .item_desc{
+            font-size: 18px;
+            font-weight: normal;
         }
     }
     .info-panel > * {

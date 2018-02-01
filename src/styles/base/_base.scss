@@ -5,15 +5,27 @@
 html {
   font-size: 62.5%;
 }
-
 body {
   color: #232322;
   font-family: 'Open Sans', sans-serif;
-  font-size: $m-size;
-  line-height: 1.6;
   // overflow-x: hidden;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+h1{
+  font-size: 48px;
+}
+h3{
+  font-size: 28px;
+}
+.regular{
+  font-weight: normal;
+}
+.light{
+  font-weight: lighter;
+}
+.bold{
+  font-weight: bold;
+}
 .row{
   margin-left: 0px;
   margin-right: 0px;

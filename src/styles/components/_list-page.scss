@@ -6,7 +6,7 @@
     padding: 3rem 6rem;
 }
 .list-items{
-    margin: 8rem 0px;
+    margin: 6rem 0px;
 }
 .listing-section{
     padding: 5rem 0px;
@@ -14,6 +14,8 @@
 .list-info{
     border-bottom: 0px;
     .actions{
+        font-size: 14px;
+        font-weight: bold;
         a:first-child{
             margin: 0px 2.5rem 0px 0px;
         }
@@ -30,6 +32,8 @@
             margin-bottom: 0px;
         }
         .popular-list-name{
+            font-size: 14px;
+            font-weight: bold;
             color: $secondry;
         }
         .popular-list-comments{
@@ -52,6 +56,14 @@
             color: $secondry;
         }
     }
+}
+.side-nav-heading{
+    font-size: 23px;
+    font-weight: normal;
+}
+.see_more{
+    font-size: 14px;
+    font-weight: bold;
 }
 
 ///////////////////////////////////////////////////////////////////////////
