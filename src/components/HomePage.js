@@ -116,19 +116,9 @@ class HomePage extends React.Component {
         return (
             <div>
                 <Header />
-                <div className="page-content">
+                <div className="page-content home-page">
                     <div className="row">
-                        <div className="col-md-10">
-                            <ul className="list-group">
-                                {this.props.lists.length && this.props.lists.map(list => (<li className="list-group-item" key={list.id}><Link to={`/${list.slug}`}>{list.name}</Link></li>))}
-                            </ul>
-                        </div>
-                        <div className="col-md-2">
-                            <button 
-                                className="btn btn-primary d-block action-button full-width bg-darkblue add_list_button"
-                                onClick={this.addNewList}
-                            >New List</button>
-                        </div>
+                        {this.props.lists.length && this.props.lists.map((list, index) => (<div className="col-md-3 item" key={list.id}><span className="index">{index < 9 ? '0'+(index+1) : index+1}.</span><Link to={`/${list.slug}`}>{list.name}</Link></div>))}
                     </div>
                     
                     <LoginModal 
