@@ -88,6 +88,9 @@ class HomePage extends React.Component {
                 'Authorization': `Basic ${this.props.uid}`
             }
         }
+        if(this.props.uid){
+            config.headers.Authorization = `Basic ${this.props.uid}`;
+        }
         axios.get('http://api.moi10.com/getFilteredLists', config).then((res) => {
             console.log("Lists fetched");
             console.log(res.data);
@@ -141,28 +144,28 @@ class HomePage extends React.Component {
                                 <div className="popular"></div>
                                 <h3 className="list-header">Most Popular</h3>
                             </div>
-                            {this.state.popular.length && this.state.popular.map((list, index) => (<div className="item" key={list.id}><span className="index">{index < 9 ? '0'+(index+1) : index+1}.</span><Link to={`/${list.slug}`}>{list.name}</Link></div>))}
+                            {this.state.popular && this.state.popular.length && this.state.popular.map((list, index) => (<div className="item" key={list.id}><span className="index">{index < 9 ? '0'+(index+1) : index+1}.</span><Link to={`/${list.slug}`}>{list.name}</Link></div>))}
                         </div>
                         <div className="d-flex flex-column">
                             <div>
                                 <div className="trending"></div> 
                                 <h3 className="list-header">Trending</h3>
                             </div>
-                            {this.state.trending.length && this.state.trending.map((list, index) => (<div className="item" key={list.id}><span className="index">{index < 9 ? '0'+(index+1) : index+1}.</span><Link to={`/${list.slug}`}>{list.name}</Link></div>))}
+                            {this.state.trending && this.state.trending.length && this.state.trending.map((list, index) => (<div className="item" key={list.id}><span className="index">{index < 9 ? '0'+(index+1) : index+1}.</span><Link to={`/${list.slug}`}>{list.name}</Link></div>))}
                         </div>
                         <div className="d-flex flex-column"> 
                             <div>
                                 <div className="latest"></div>
                                 <h3 className="list-header">Just Added</h3>
                             </div>
-                            {this.state.recent.length && this.state.recent.map((list, index) => (<div className="item" key={list.id}><span className="index">{index < 9 ? '0'+(index+1) : index+1}.</span><Link to={`/${list.slug}`}>{list.name}</Link></div>))}
+                            {this.state.recent && this.state.recent.length && this.state.recent.map((list, index) => (<div className="item" key={list.id}><span className="index">{index < 9 ? '0'+(index+1) : index+1}.</span><Link to={`/${list.slug}`}>{list.name}</Link></div>))}
                         </div>
                         <div className="d-flex flex-column"> 
                             <div>
                                 <div className="your-lists"></div>
                                 <h3 className="list-header">Your Lists</h3>
                             </div>
-                            {this.state.my_lists.length && this.state.my_lists.map((list, index) => (<div className="item" key={list.id}><span className="index">{index < 9 ? '0'+(index+1) : index+1}.</span><Link to={`/${list.slug}`}>{list.name}</Link></div>))}
+                            {this.state.my_lists && this.state.my_lists.length && this.state.my_lists.map((list, index) => (<div className="item" key={list.id}><span className="index">{index < 9 ? '0'+(index+1) : index+1}.</span><Link to={`/${list.slug}`}>{list.name}</Link></div>))}
                         </div>
                     </div>                
                     <LoginModal 
