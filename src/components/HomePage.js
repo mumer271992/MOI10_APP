@@ -83,6 +83,8 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
+        this.updateDimensions();
+        window.addEventListener("resize", this.updateDimensions.bind(this));
         var config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -146,14 +148,6 @@ class HomePage extends React.Component {
                 isMobile: false
             }));
         }
-    }
-
-    /**
-     * Add event listener
-     */
-    componentDidMount() {
-        this.updateDimensions();
-        window.addEventListener("resize", this.updateDimensions.bind(this));
     }
 
     /**
