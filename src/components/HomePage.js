@@ -16,6 +16,7 @@ class HomePage extends React.Component {
         showAddListItemModal: false,
         showLoginModal: false,
         showSignupModal: false,
+        isMobile: false,
         filterredDictionary: [],
         popular: [],
         trending: [],
@@ -132,13 +133,42 @@ class HomePage extends React.Component {
         }
         return sortedKeys;
     }
+    /**
+     * Calculate & Update state of new dimensions
+     */
+    updateDimensions() {
+        if(window.innerWidth < 450) {
+            this.setState(() => ({
+                isMobile: true
+            }));
+        } else {
+            this.setState(() => ({
+                isMobile: false
+            }));
+        }
+    }
+
+    /**
+     * Add event listener
+     */
+    componentDidMount() {
+        this.updateDimensions();
+        window.addEventListener("resize", this.updateDimensions.bind(this));
+    }
+
+    /**
+     * Remove event listener
+     */
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateDimensions.bind(this));
+    }
 
     render() {
         return (
             <div>
                 <Header />
                 <div className="page-content home-page">
-                    <div className="d-flex felx-row justify-content-space-evenly">
+                    <div className={`d-flex ${!this.state.isMobile ? 'felx-row' : 'flex-column'} justify-content-space-evenly`}>
                         <div className="d-flex flex-column">
                             <div>
                                 <div className="popular"></div>
