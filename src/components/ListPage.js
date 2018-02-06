@@ -373,9 +373,9 @@ class ListPage extends React.Component {
                     <div className="col-md-3">
                         <div className="list-info right-section border">
                             <p className="side-nav-heading">List Information</p>
-                            <p>All Comments: <b>500</b></p>
-                            <p>Date: <b>20 of December, 02:00 PM</b></p>
-                            <p>Category: <b>Finance</b></p>
+                            <p className="normal-font">All Comments: <b>500</b></p>
+                            <p className="normal-font">Date: <b>20 of December, 02:00 PM</b></p>
+                            <p className="normal-font">Category: <b>Finance</b></p>
                             <div className="actions">
                                 <a>Share <i className="fa fa-share-alt"></i></a>
                                 <a>Add to Favourite <span className="fa fa-heart"></span></a>

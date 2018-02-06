@@ -208,7 +208,7 @@ class Header extends React.Component{
                 </div>
                 <div className="col-md-3">
                   <div className="action-section">
-                    <button className="btn btn-primary add_list_button" onClick={this.showAddListModal}><i className="fa fa-menu"></i>New List</button>
+                    <button className="btn btn-primary add_list_button" onClick={this.showAddListModal}><i className="fa fa-align-left"></i>New List</button>
                     <button className="btn btn-primary transparent-button add_item_button" onClick={this.showAddItemModal}><i className="fa fa-plus"></i>Add Item to List</button>
                   </div>
                 </div>
