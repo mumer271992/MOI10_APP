@@ -109,7 +109,26 @@ h3{
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 450px) {
+  h1{
+    font-size: 36px;
+  }
+  h3{
+    font-size: 21px;
+  }
+}
 
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $brand-success: #296ebd;
 $loader-size: 8em;
 $check-height: 7em;
