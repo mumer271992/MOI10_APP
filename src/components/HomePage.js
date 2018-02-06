@@ -107,14 +107,14 @@ class HomePage extends React.Component {
             console.log(this.state);
             this.props.dispatch(setLists(res.data));
         });
-        get('/dictionary').then((res)=> {
-            console.log("Dictionary");
-            console.log(res.data);
-            this.filterredDictionary = this.filterTopKeywords(res.data);
-            this.setState(()=> ({
-                filterredDictionary: this.filterredDictionary
-            }));
-        });
+        // get('/dictionary').then((res)=> {
+        //     console.log("Dictionary");
+        //     console.log(res.data);
+        //     this.filterredDictionary = this.filterTopKeywords(res.data);
+        //     this.setState(()=> ({
+        //         filterredDictionary: this.filterredDictionary
+        //     }));
+        // });
     }
 
     close = () => {
