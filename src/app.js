@@ -6,10 +6,9 @@ import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
-// import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
