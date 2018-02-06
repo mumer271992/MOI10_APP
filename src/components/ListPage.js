@@ -377,8 +377,8 @@ class ListPage extends React.Component {
                             <p>Date: <b>20 of December, 02:00 PM</b></p>
                             <p>Category: <b>Finance</b></p>
                             <div className="actions">
-                                <a>Share <i className="fa fa-share-alt"></i></a>
-                                <a>Add to Favourite <span className="fa fa-heart"></span></a>
+                                <a>Share <i className="glyphicon glyphicon-share-alt"></i></a>
+                                <a>Add to Favourite <span className="glyphicon glyphicon-heart"></span></a>
                             </div>
                         </div>
                         <div className="popular-lists right-section border">
@@ -412,7 +412,7 @@ class ListPage extends React.Component {
                                 <p className="popular-list-comments">360 Comments</p>
                             </div>
                             <div className="see_more">
-                                <a>see more <span className="fa fa-angle-down"></span></a>
+                                <a>see more <span className="glyphicon glyphicon-menu-down"></span></a>
                             </div>
                         </div>
                         <div className="top-contributors right-section border">
@@ -430,7 +430,7 @@ class ListPage extends React.Component {
                                 <p>20 Lists / 800 Comments</p>                           
                             </div>
                             <div className="see_more">
-                                <a>see more <span className="fa fa-angle-down"></span></a>
+                                <a>see more <span className="glyphicon glyphicon-menu-down"></span></a>
                             </div>
                         </div>
                     </div>
