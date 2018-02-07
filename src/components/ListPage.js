@@ -427,8 +427,7 @@ class ListPage extends React.Component {
                                 this.state.item && this.state.item.top_contributors && this.state.item.top_contributors.length && this.state.item.top_contributors.map((list) => 
                                 (
                                     <div className="contributor" key={list._id}>
-                                        <p className="name"><b>{list.user.length && list.user[0].name}</b></p>
-                                        <p>{list.count} votes</p>                           
+                                        <p className="name"><b>{list.name}</b></p>                           
                                     </div>
                                 ))
                             }
