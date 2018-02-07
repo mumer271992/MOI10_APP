@@ -327,7 +327,7 @@ class ListPage extends React.Component {
     }
 
     calculateListVotes(list) {
-        return list.items.reduce((sum,item) => sum + parseInt(item.votes || 0), 0);;
+        return list.items.reduce((sum,item) => sum + parseInt(item.votes ? 1 : 0), 0);;
     }
 
     /**
