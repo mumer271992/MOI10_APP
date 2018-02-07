@@ -13,6 +13,7 @@ import { setList , getList } from '../actions/list';
 import { history } from '../routers/AppRouter';
 import OptionModal from '../components/OptionModal';
 import InfoModal from '../components/InfoModal';
+import moment from 'moment';
 
 class ListPage extends React.Component {
     keys = [];
@@ -42,10 +43,16 @@ class ListPage extends React.Component {
         axios.get(url)
         .then((res) => {
             console.log(res.data);
+            res.data.votes = this.calculateListVotes(res.data);
+            console.log(res.data.votes);
             this.props.dispatch(setList(res.data))
             //this.keys = Object.keys(res.data.words_list);
             this.relevent_items = res.data.relevent_lists;
-            this.keys = this.filterTopKeywords(res.data.words_list);
+
+            //this.keys = this.filterTopKeywords(res.data.words_list);
+            this.setState(() => ({
+                keys: this.filterTopKeywords(res.data.words_list)
+            }));
             this.setState(()=> ({
                 item: this.orderListItems(res.data)
             }));
@@ -180,7 +187,11 @@ class ListPage extends React.Component {
         selectedItemId: '',
         info: '',
         loading: false,
-        keywordsList: []
+        keywordsList: [],
+        relevent_lists: [],
+        popular_lists: [],
+        top_contributors: [],
+        keys: []
     }
     onYes = () => {
         this.showAddItemModal();
@@ -315,6 +326,14 @@ class ListPage extends React.Component {
         return sortedKeys;
     }
 
+    calculateListVotes(list) {
+        let count = 0;
+        if(list.items && list.items.length){
+            count = list.items.reduce((sum,item) => sum + parseInt(item.votes), count);
+        }
+        return count;
+    }
+
     /**
      * Calculate & Update state of new dimensions
      */
@@ -373,68 +392,54 @@ class ListPage extends React.Component {
                     <div className="col-md-3">
                         <div className="list-info right-section border">
                             <p className="side-nav-heading">List Information</p>
-                            <p className="normal-font">All Comments: <b>500</b></p>
-                            <p className="normal-font">Date: <b>20 of December, 02:00 PM</b></p>
-                            <p className="normal-font">Category: <b>Finance</b></p>
+                            <p className="normal-font">All Votes: <b>{this.state.item.votes}</b></p>
+                            <p className="normal-font">Date: <b>{this.state.item && moment(this.state.item).format('MMM DD, YYYY')}</b></p>
                             <div className="actions">
                                 <a>Share <i className="fa fa-share-alt"></i></a>
                                 <a>Add to Favourite <span className="fa fa-heart"></span></a>
                             </div>
                         </div>
                         <div className="popular-lists right-section border">
+                            <p className="side-nav-heading">Related Lists</p>
+                            {
+                                this.state.item && this.state.item.relevent_lists && this.state.item.relevent_lists.length && this.state.item.relevent_lists.map((list) => (
+                                    <div className="popular-list" key={list.id}>
+                                        <p className="popular-list-name"><b><Link to={`/${list.slug}`}>{list.name}</Link></b></p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        <div className="popular-lists right-section border">
                             <p className="side-nav-heading">Popular Lists</p>
-                            <div className="popular-list">
-                                <p className="popular-list-name"><b>Founders of all times</b></p>
-                                <p className="popular-list-comments">360 Comments</p>
-                            </div>
-                            <div className="popular-list">
-                                <p className="popular-list-name"><b>Founders of all times</b></p>
-                                <p className="popular-list-comments">360 Comments</p>
-                            </div>
-                            <div className="popular-list">
-                                <p className="popular-list-name"><b>Founders of all times</b></p>
-                                <p className="popular-list-comments">360 Comments</p>
-                            </div>
-                            <div className="popular-list">
-                                <p className="popular-list-name"><b>Founders of all times</b></p>
-                                <p className="popular-list-comments">360 Comments</p>
-                            </div>
-                            <div className="popular-list">
-                                <p className="popular-list-name"><b>Founders of all times</b></p>
-                                <p className="popular-list-comments">360 Comments</p>
-                            </div>
-                            <div className="popular-list">
-                                <p className="popular-list-name"><b>Founders of all times</b></p>
-                                <p className="popular-list-comments">360 Comments</p>
-                            </div>
-                            <div className="popular-list">
-                                <p className="popular-list-name"><b>Founders of all times</b></p>
-                                <p className="popular-list-comments">360 Comments</p>
-                            </div>
-                            <div className="see_more">
-                                <a>see more <span className="fa fa-angle-down"></span></a>
-                            </div>
+                            {
+                                this.state.item && this.state.item.popular && this.state.item.popular.length && this.state.item.popular.map((list) => (
+                                    <div className="popular-list" key={list.id}>
+                                        <p className="popular-list-name"><b><Link to={`/${list.slug}`}>{list.name}</Link></b></p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        <div className="top-keywords right-section border">
+                            <p className="side-nav-heading">Top keywords</p>
+                            {
+                                this.state.keys && this.state.keys.length && this.state.keys.map((key,index) => (<p className="keyword" key={index}>{key}</p>))
+                            }
                         </div>
                         <div className="top-contributors right-section border">
                             <p className="side-nav-heading">Top Contributters</p>
-                            <div className="contributor">
-                                <p className="name"><b>Andrew Knight</b></p>
-                                <p>20 Lists / 800 Comments</p>                           
-                            </div>
-                            <div className="contributor">
-                                <p className="name"><b>Andrew Knight</b></p>
-                                <p>20 Lists / 800 Comments</p>                           
-                            </div>
-                            <div className="contributor">
-                                <p className="name"><b>Andrew Knight</b></p>
-                                <p>20 Lists / 800 Comments</p>                           
-                            </div>
-                            <div className="see_more">
-                                <a>see more <span className="fa fa-angle-down"></span></a>
-                            </div>
+                            {
+                                this.state.item && this.state.item.top_contributors && this.state.item.top_contributors.length && this.state.item.top_contributors.map((list) => 
+                                (
+                                    <div className="contributor" key={list._id}>
+                                        <p className="name"><b>{list.user.length && list.user[0].name}</b></p>
+                                        <p>{list.count} votes</p>                           
+                                    </div>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
+                {this.state.item && this.state.item.top_contributors && this.state.item.top_contributors.length && this.state.item.top_contributors.map((list) => <p key={list._id}>{list.name}</p>)}
                 <LoginModal 
                     show={this.state.showLoginModal}
                     close={this.close}
