@@ -434,7 +434,6 @@ class ListPage extends React.Component {
                         </div>
                     </div>
                 </div>
-                {this.state.item && this.state.item.top_contributors && this.state.item.top_contributors.length && this.state.item.top_contributors.map((list) => <p key={list._id}>{list.name}</p>)}
                 <LoginModal 
                     show={this.state.showLoginModal}
                     close={this.close}
