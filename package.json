@@ -22,11 +22,12 @@
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "3.3.7",
     "copy-webpack-plugin-advanced": "^1.0.3",
     "css-loader": "0.28.4",
     "express": "4.15.4",
     "extract-text-webpack-plugin": "3.0.0",
+    "file-loader": "^1.1.6",
     "firebase": "4.2.0",
     "font-awesome": "^4.7.0",
     "history": "4.7.2",
@@ -50,7 +51,7 @@
     "style-loader": "0.18.2",
     "uuid": "3.1.0",
     "validator": "8.0.0",
-    "webpack": "3.1.0"
+    "webpack": "^3.10.0"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.3.1",
