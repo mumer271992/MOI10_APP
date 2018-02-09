@@ -89,7 +89,8 @@
             border-right: 0px;
             border-top: 1px solid $border-color;
             .total-votes{
-                padding-top: 10px;
+                height: 50px;
+                line-height: 3;
             }
         }   
         .info-panel{
