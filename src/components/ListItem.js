@@ -67,7 +67,7 @@ class ListItem extends React.Component {
                 </div>                        
                 
                 <div className="info-panel">
-                    <h3 className="regular">#{this.props.index + 1} {this.props.item.name}</h3>
+                    <h3 className="bold">#{this.props.index + 1} {this.props.item.name}</h3>
                     <p className="secondry-text item_desc">{this.props.item.description}</p>
                     <div className="">
                         <span style={{'margin-right': '1rem'}}><span className="primary-color"><i className="fa fa-comments" aria-hidden="true"></i>
