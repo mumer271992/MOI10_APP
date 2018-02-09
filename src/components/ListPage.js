@@ -368,7 +368,7 @@ class ListPage extends React.Component {
                     <div className="col-md-1"> 
                     </div>
                     <div className="col-md-7 listing-section">
-                        <h3 className={`regular ${this.state.isMobile ? 'text-center' : ''}`}>Most Important 10</h3>
+                        <h3 className={`bold ${this.state.isMobile ? 'text-center' : ''}`}>Most Important 10</h3>
                         <h1 className={`light ${this.state.isMobile ? 'text-center' : ''}`}>{this.state.item.name}</h1>
                         <div className="list-items">
                             {
