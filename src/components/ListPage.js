@@ -329,7 +329,9 @@ class ListPage extends React.Component {
 
     calculateListVotes(list) {
         return list.items.reduce((sum,item) => {
-            let votes = item.votes * (item.votes < 0 ? -1 : 1);
+            console.log(item.votes);
+            let votes = item.votes ? item.votes * (item.votes < 0 ? -1 : 1) : 0;
+            console.log("Calculating Votes:" + votes);
             return sum + parseInt(votes)
         }, 0);
     }

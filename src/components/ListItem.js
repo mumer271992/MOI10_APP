@@ -40,6 +40,10 @@ class ListItem extends React.Component {
         window.removeEventListener("resize", this.updateDimensions.bind(this));
     }
 
+    calculatePercentage(votes) {
+        let vote_perc = (votes * 100) / this.props.totalVotes;
+        return vote_perc != vote_perc ? 0 : vote_perc
+    }
     render() {
         return (
             <div className={`d-flex ${!this.state.isMobile ? 'flex-row' : 'flex-reverse-columns'} list-item`}>
@@ -54,7 +58,7 @@ class ListItem extends React.Component {
                         <i className={`fa fa-circle fa-stack-2x ${this.props.item.my_vote && this.props.item.my_vote.vote === '+1' ? 'secondry-backfround' : ''}`}></i>
                         <i className="fa fa-angle-up fa-stack-1x bold"></i>
                     </span>
-                    <span className="total-votes">{ Math.round((this.props.item.votes * 100 ) / this.props.totalVotes)} % 
+                    <span className="total-votes">{Math.round(this.calculatePercentage(this.props.item.votes))} % 
                         {
                             this.props.item.votes > 0 ? (<i className="fa fa-long-arrow-up green"></i>) : (<i className="fa fa-long-arrow-down red"></i>)
                         }
