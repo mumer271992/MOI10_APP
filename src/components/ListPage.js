@@ -43,15 +43,16 @@ class ListPage extends React.Component {
         axios.get(url)
         .then((res) => {
             console.log(res.data);
-            res.data.votes = this.calculateListVotes(res.data);
+            res.data.votes = this.calculateListVotes({ ...res.data });
             console.log(res.data.votes);
             this.props.dispatch(setList(res.data))
             //this.keys = Object.keys(res.data.words_list);
             this.relevent_items = res.data.relevent_lists;
-
-            //this.keys = this.filterTopKeywords(res.data.words_list);
+            // this.setState(() => ({
+            //     keys: this.filterTopKeywords(res.data.words_list)
+            // }));
             this.setState(() => ({
-                keys: this.filterTopKeywords(res.data.words_list)
+                keys: res.data && res.data.words_list ? res.data.words_list : []
             }));
             this.setState(()=> ({
                 item: this.orderListItems(res.data)
@@ -327,7 +328,10 @@ class ListPage extends React.Component {
     }
 
     calculateListVotes(list) {
-        return list.items.reduce((sum,item) => sum + parseInt(item.votes ? 1 : 0), 0);;
+        return list.items.reduce((sum,item) => {
+            let votes = item.votes * (item.votes < 0 ? -1 : 1);
+            return sum + parseInt(votes)
+        }, 0);
     }
 
     /**
@@ -376,6 +380,7 @@ class ListPage extends React.Component {
                                     <ListItem 
                                         key={item.id}
                                         item={item}
+                                        totalVotes={this.state.item.votes}
                                         index={index}
                                         onVote = {this.voteItem}
                                     />
@@ -388,8 +393,9 @@ class ListPage extends React.Component {
                     <div className="col-md-3">
                         <div className="list-info right-section border">
                             <p className="side-nav-heading">List Information</p>
-                            <p className="normal-font">All Votes: <b>{this.state.item.votes}</b></p>
-                            <p className="normal-font">Date: <b>{this.state.item && moment(this.state.item).format('MMM DD, YYYY')}</b></p>
+                            <p className="normal-font">{this.state.item.description}</p>
+                            <p className="normal-font">Items: <b>{this.state.item && this.state.item.items ? this.state.item.items.length : 0}</b></p>                            
+                            <p className="normal-font">Votes: <b>{this.state.item.votes}</b></p>
                             <div className="actions">
                                 <a>Share <i className="fa fa-share-alt"></i></a>
                                 <a>Add to Favourite <span className="fa fa-heart"></span></a>
@@ -417,9 +423,11 @@ class ListPage extends React.Component {
                         </div>
                         <div className="top-keywords right-section border">
                             <p className="side-nav-heading">Top keywords</p>
+                            <div>
                             {
-                                this.state.keys && this.state.keys.length && this.state.keys.map((key,index) => (<p className="keyword" key={index}>{key}</p>))
-                            }
+                                this.state.keys && this.state.keys.length && this.state.keys.map((key,index) => (<p className="keyword" key={index}>{key}{index < this.state.keys.length ? ',' : ''} </p>))
+                            },
+                            </div>
                         </div>
                         <div className="top-contributors right-section border">
                             <p className="side-nav-heading">Top Contributters</p>

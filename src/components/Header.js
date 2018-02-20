@@ -195,7 +195,7 @@ class Header extends React.Component{
             <header className="header">
               <div className="row">
                 <div className="col-md-6">
-                  <h1 className="i-b"><Link to="/"><img src="../dist/result.svg" className="logo" /></Link></h1>
+                  <h1 className="i-b"><Link to="/"><img src="../dist/Logo.svg" className="logo" /></Link></h1>
                   <p className="i-b p-l p-r no-m desc">List of the Most <br/>Important Things</p>
                 </div>
                 <div className="col-md-3">

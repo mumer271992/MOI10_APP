@@ -65,11 +65,23 @@
     font-weight: bold;
 }
 .keyword{
-    padding: 2px 5px;
+    display: inline-block;
+    padding: 2px 0px;
     border-radius: 5px;
     margin: 0px 3px;
+    color: $secondry;
+    font-weight: bold;
 }
-
+.fa-long-arrow-up{
+    font-size: 18px !important;
+    font-weight: bold;
+    margin-left: 4px;
+}
+.fa-long-arrow-down{
+    font-size: 18px !important;
+    font-weight: bold;
+    margin-left: 4px;
+}
 ///////////////////////////////////////////////////////////////////////////
 
 // Extra small devices (portrait phones, less than 576px)
