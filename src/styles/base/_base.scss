@@ -2,12 +2,12 @@
   box-sizing: border-box;
 }
 
-@font-face {
-  font-family: "Open Sans";
-  src: url("/dist/OpenSans-Light.ttf") format("truetype"),
-       url("/dist/OpenSans-Regular.ttf") format("truetype"),
-       url("/dist/OpenSans-Bold.ttf") format("truetype");
-}
+// @font-face {
+//   font-family: "Open Sans";
+//   src: url("/dist/OpenSans-Light.ttf") format("truetype"),
+//        url("/dist/OpenSans-Regular.ttf") format("truetype"),
+//        url("/dist/OpenSans-Bold.ttf") format("truetype");
+// }
 html {
   font-size: 62.5%;
 }
