@@ -11,11 +11,13 @@
         text-align: center;
         border-right: 1px solid $border-color;
         line-height: 1.2;
-        padding: 1rem 2rem;
+        padding: 1rem 0px;
         color: #fff;
         .vote_button{
             margin-bottom: 0.25rem;
             margin-top: 0.25rem;
+            margin-left: 2rem;
+            margin-right: 2rem;
         }
         .vote_button:hover{
             .fa-circle{
@@ -74,6 +76,16 @@
     .fa-lg:hover{
         cursor: pointer;
         box-sizing: border-box;
+    }
+    .fa-long-arrow-up{
+        font-size: 18px !important;
+        font-weight: bold;
+        margin-left: 8px;
+    }
+    .fa-long-arrow-down{
+        font-size: 18px !important;
+        font-weight: bold;
+        margin-left: 8px;
     }
 }
 

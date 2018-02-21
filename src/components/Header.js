@@ -162,7 +162,7 @@ class Header extends React.Component{
      * Calculate & Update state of new dimensions
      */
     updateDimensions() {
-      if(window.innerWidth < 450) {
+      if(window.innerWidth < 768) {
           this.setState(() => ({
               isMobile: true
           }));
@@ -193,20 +193,20 @@ class Header extends React.Component{
         {
           !this.state.isMobile ? (
             <header className="header">
-              <div className="row">
-                <div className="col-md-6">
-                  <h1 className="i-b"><Link to="/"><img src="../dist/Logo.svg" className="logo" /></Link></h1>
-                  <p className="i-b p-l p-r no-m desc">List of the Most <br/>Important Things</p>
+              <div className="d-flex flex-row justify-content-space-evenly">
+                <div className="logo-section d-flex flex-row">
+                  <h1 className=""><Link to="/"><img src="../dist/Logo.svg" className="logo" /></Link></h1>
+                  <p className="p-l p-r no-m desc">List of the Most <br/>Important Things</p>
                 </div>
-                <div className="col-md-3">
+                <div className="search-section">
                   <form className="form">
                     <div className="form-group">
                       <input type="text" className="form-control search_bar" placeholder="Search" />
                     </div>
-                    <span className="glyphicon glyphicon-search embeded-search-icon"></span>
+                    <i className="fa fa-search embeded-search-icon"></i>
                   </form>
                 </div>
-                <div className="col-md-3">
+                <div className="action-buttons">
                   <div className="action-section">
                     <button className="btn btn-primary add_list_button" onClick={this.showAddListModal}><i className="fa fa-align-left"></i>New List</button>
                     <button className="btn btn-primary transparent-button add_item_button" onClick={this.showAddItemModal}><i className="fa fa-plus"></i>Add Item to List</button>
@@ -227,7 +227,7 @@ class Header extends React.Component{
                     <div className="form-group">
                       <input type="text" className="form-control" placeholder="Search" />
                     </div>
-                    <span className="glyphicon glyphicon-search embeded-search-icon"></span>
+                    <span className="fa fa-search embeded-search-icon"></span>
                   </form>
                 )
               }
