@@ -29,12 +29,15 @@ class ListPage extends React.Component {
     }
     componentDidUpdate(){
         console.log('Rendered');
-
+        window.scrollTo({top: 0, left: 0 , behavior: 'smooth'});
         // if(this.props.current_list && this.props.current_list.id){
         //     // this.setState(()=> ({
         //     //     item: this.orderListItems(this.props.current_list)
         //     // }));
         // }
+    }
+    componentDidMount(){
+        
     }
     fetchCurrentList(slug){
         const url = this.state.user && this.state.user.id ? 
