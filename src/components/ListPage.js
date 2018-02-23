@@ -398,31 +398,37 @@ class ListPage extends React.Component {
                             <p className="normal-font">{this.state.item.description}</p>
                             <p className="normal-font">Items: <b>{this.state.item && this.state.item.items ? this.state.item.items.length : 0}</b></p>                            
                             <p className="normal-font">Votes: <b>{this.state.item.votes}</b></p>
-                            <div className="actions">
-                                <a>Share <i className="fa fa-share-alt"></i></a>
-                                <a>Add to Favourite <span className="fa fa-heart"></span></a>
-                            </div>
                         </div>
-                        <div className="popular-lists right-section border">
-                            <p className="side-nav-heading">Related Lists</p>
-                            {
-                                this.state.item && this.state.item.relevent_lists && this.state.item.relevent_lists.length && this.state.item.relevent_lists.map((list) => (
-                                    <div className="popular-list" key={list.id}>
-                                        <p className="popular-list-name"><b><Link to={`/${list.slug}`}>{list.name}</Link></b></p>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                        <div className="popular-lists right-section border">
-                            <p className="side-nav-heading">Popular Lists</p>
-                            {
-                                this.state.item && this.state.item.popular && this.state.item.popular.length && this.state.item.popular.map((list) => (
-                                    <div className="popular-list" key={list.id}>
-                                        <p className="popular-list-name"><b><Link to={`/${list.slug}`}>{list.name}</Link></b></p>
-                                    </div>
-                                ))
-                            }
-                        </div>
+                        {
+                            this.state.item.relevent_lists && this.state.item.relevent_lists.length > 0 ?  
+                            (
+                                <div className="popular-lists right-section border">
+                                    <p className="side-nav-heading">Related Lists</p>
+                                    {
+                                        this.state.item && this.state.item.relevent_lists && this.state.item.relevent_lists.length && this.state.item.relevent_lists.map((list) => (
+                                            <div className="popular-list" key={list.id}>
+                                                <p className="popular-list-name"><b><Link to={`/${list.slug}`}>{list.name}</Link></b></p>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            ) : (<div></div>)
+                        }
+                        {
+                            this.state.item.popular && this.state.item.popular.length > 0 ? 
+                            (
+                                <div className="popular-lists right-section border">
+                                    <p className="side-nav-heading">Popular Lists</p>
+                                    {
+                                        this.state.item && this.state.item.popular && this.state.item.popular.length && this.state.item.popular.map((list) => (
+                                            <div className="popular-list" key={list.id}>
+                                                <p className="popular-list-name"><b><Link to={`/${list.slug}`}>{list.name}</Link></b></p>
+                                            </div>
+                                        ))
+                                    }
+                                 </div>
+                            ) : (<div></div>)
+                        }
                         <div className="top-keywords right-section border">
                             <p className="side-nav-heading">Top keywords</p>
                             <div>
@@ -431,17 +437,22 @@ class ListPage extends React.Component {
                             },
                             </div>
                         </div>
-                        <div className="top-contributors right-section border">
-                            <p className="side-nav-heading">Top Contributters</p>
-                            {
-                                this.state.item && this.state.item.top_contributors && this.state.item.top_contributors.length && this.state.item.top_contributors.map((list) => 
-                                (
-                                    <div className="contributor" key={list._id}>
-                                        <p className="name"><b>{list.name}</b></p>                           
-                                    </div>
-                                ))
-                            }
-                        </div>
+                        {
+                            this.state.item.top_contributors && this.state.item.top_contributors.length > 0 ?
+                            (
+                                <div className="top-contributors right-section border">
+                                    <p className="side-nav-heading">Top Contributters</p>
+                                    {
+                                        this.state.item && this.state.item.top_contributors && this.state.item.top_contributors.length && this.state.item.top_contributors.map((list) => 
+                                        (
+                                            <div className="contributor" key={list._id}>
+                                                <p className="name"><b>{list.name}</b></p>                           
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            ) : (<div></div>)
+                        }
                     </div>
                 </div>
                 <LoginModal 
