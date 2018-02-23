@@ -162,7 +162,7 @@ class Header extends React.Component{
      * Calculate & Update state of new dimensions
      */
     updateDimensions() {
-      if(window.innerWidth < 768) {
+      if(window.innerWidth < 830) {
           this.setState(() => ({
               isMobile: true
           }));

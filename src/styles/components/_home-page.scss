@@ -1,5 +1,5 @@
 .home-page{
-    margin-top: 8rem;
+    margin-top: 12rem;
     margin-bottom: 8rem;
     .item{
         padding: 1.5rem 1rem;
@@ -27,7 +27,8 @@
 // Small devices (landscape phones, 576px and up)
 @media (max-width: 450px) {
     .home-page{
-        margin-left: 3rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
         .lists-column{
             width: 100%;
         }
@@ -35,7 +36,14 @@
 }
 
 // Medium devices (tablets, 768px and up)
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-width: 451px){
+    .home-page{
+        margin-left: 4rem;
+        margin-right: 4rem;
+        .lists-column{
+            width: 100%;
+        }
+    }
 }
 
 // Large devices (desktops, 992px and up)

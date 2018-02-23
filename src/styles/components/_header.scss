@@ -73,7 +73,7 @@
   }
   .action-buttons{
     display: block;
-    width: 20%;
+    width: auto;
   }
 }
 
@@ -220,10 +220,21 @@
 @media (max-width: 1050px) and (min-width: 950px) {
   .header{
     .logo-section{
-      width: 30%;
+      width: auto;
     }
     .action-buttons{
-      width: 35%;
+      width: auto;
+    }
+  }
+}
+
+@media (max-width: 1180px) {
+  .header{
+    .logo-section{
+      width: auto;
+    }
+    .action-buttons{
+      width: auto;
     }
   }
 }

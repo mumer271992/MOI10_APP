@@ -139,7 +139,7 @@ class HomePage extends React.Component {
      * Calculate & Update state of new dimensions
      */
     updateDimensions() {
-        if(window.innerWidth < 450) {
+        if(window.innerWidth < 768) {
             this.setState(() => ({
                 isMobile: true
             }));
