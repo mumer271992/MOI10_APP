@@ -29,7 +29,7 @@ class ListPage extends React.Component {
     }
     componentDidUpdate(){
         console.log('Rendered');
-        window.scrollTo({top: 0, left: 0 , behavior: 'smooth'});
+        // window.scrollTo({top: 0, left: 0 , behavior: 'smooth'});
         // if(this.props.current_list && this.props.current_list.id){
         //     // this.setState(()=> ({
         //     //     item: this.orderListItems(this.props.current_list)
@@ -224,6 +224,7 @@ class ListPage extends React.Component {
             else {
                 const slug = nextProps.match.params.slug;
                 this.fetchCurrentList(slug);
+                window.scrollTo({top: 0, left: 0 , behavior: 'smooth'});
             }
         });
     }
