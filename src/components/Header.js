@@ -146,9 +146,9 @@ class Header extends React.Component{
   }
 
   toogleSearchBar = () => {
-    this.setState(() => ({
-      showHeaderSearchBox: !this.state.showHeaderSearchBox    
-    }));
+    // this.setState(() => ({
+    //   showHeaderSearchBox: !this.state.showHeaderSearchBox    
+    // }));
   }
 
   toogleMenu = () => {
@@ -199,12 +199,7 @@ class Header extends React.Component{
                   <p className="p-l p-r no-m desc">List of the Most <br/>Important Things</p>
                 </div>
                 <div className="search-section">
-                  <form className="form">
-                    <div className="form-group">
-                      <input type="text" className="form-control search_bar" placeholder="Search" />
-                    </div>
-                    <i className="fa fa-search embeded-search-icon"></i>
-                  </form>
+                  
                 </div>
                 <div className="action-buttons">
                   <div className="action-section">
