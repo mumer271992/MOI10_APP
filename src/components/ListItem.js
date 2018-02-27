@@ -75,7 +75,15 @@ class ListItem extends React.Component {
                 </div>                        
                 
                 <div className="info-panel">
-                    <h3 className=""><a href={this.props.item.url} target="_blank">#{this.props.index + 1} {this.props.item.name}</a></h3>
+                    <h3 className="">
+                        {
+                            this.props.item && this.props.item.url ? (
+                                <a href={this.props.item.url} target="_blank" className="items-link">#{this.props.index + 1} {this.props.item.name}</a>
+                            ) : (
+                                <div>#{this.props.index + 1} {this.props.item.name}</div>
+                            ) 
+                        }
+                    </h3>
                     <p className="secondry-text item_desc">{this.props.item.description}</p>
             </div>
                 
