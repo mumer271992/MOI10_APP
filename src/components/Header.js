@@ -214,7 +214,7 @@ class Header extends React.Component{
               <div className="d-flex flex-row justify-content-space-between text-center">
                 <button className="btn" onClick={this.toogleMenu}><i className={`fa ${ !this.state.showMenu ? 'fa-bars' : 'fa-times'}`} aria-hidden="true"></i></button>
                 <h1 className="i-b"><Link to="/"><img src="../dist/Logo.svg" className="logo" /></Link></h1>
-                <button className="btn" onClick={this.toogleSearchBar}><i className={`fa ${ !this.state.showHeaderSearchBox ? 'fa-search' : 'fa-times'}`} aria-hidden="true"></i></button>
+                <button className="btn" onClick={this.toogleSearchBar}></button>
               </div>
               {
                 this.state.showHeaderSearchBox && (
