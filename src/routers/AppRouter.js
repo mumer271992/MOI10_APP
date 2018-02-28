@@ -9,6 +9,7 @@ import PublicRoute from './PublicRoute';
 import SignupPage  from '../components/SignupPage';
 import HomePage from '../components/HomePage';
 import ListPage from '../components/ListPage';
+import PrivcyPage from '../components/privacy';
 
 export const history = createHistory();
 
@@ -20,6 +21,7 @@ const AppRouter = () => (
         <Route path="/dashboard" component={DashboardPage} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/home" component={HomePage} />
+        <Route path="/privacy/policy" component={PrivcyPage} exact={true} />
         <Route path="/:slug" component={ListPage} />
         <Route component={NotFoundPage} />
       </Switch>
