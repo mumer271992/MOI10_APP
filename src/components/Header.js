@@ -59,7 +59,11 @@ class Header extends React.Component{
       showSignupModal: false,
       showMenu: false
     }));
+    console.log('Login Success Handler');
+    console.log(this.props.uid);
     if(this.props.uid){
+      console.log('Current State');
+      console.log(this.state.currentAction);
       switch(this.state.currentAction){
           case 'ADD_LIST': 
               this.showAddListModal();
@@ -91,6 +95,9 @@ class Header extends React.Component{
   }
   showAddListModal = () => {
     if(!this.props.uid){
+      this.setState(() => ({
+        currentAction: 'ADD_LIST'
+      }));
       this.openLoginModal();
     }
     else{
@@ -104,6 +111,9 @@ class Header extends React.Component{
   showAddItemModal = () => {
     console.log("Show Add list item modal");
     if(!this.props.uid){
+        this.setState(() => ({
+          currentAction: 'ADD_LIST_ITEM'
+        }));
         this.openLoginModal();
     }
     else{
@@ -157,6 +167,13 @@ class Header extends React.Component{
       showMenu: !this.state.showMenu
     }));
   }
+
+  isFrontPage = () => {
+    console.log("Checking URL: ", this.props)
+    let pathname = document.location.pathname;
+    
+    return pathname === '/' ? true : false;
+  }
   ///////////////////////////////////////////// Window Resize Listener ////////////////////////////////
   /**
      * Calculate & Update state of new dimensions
@@ -204,8 +221,9 @@ class Header extends React.Component{
                 <div className="action-buttons">
                   <div className="action-section">
                     <button className="btn btn-primary add_list_button" onClick={this.showAddListModal}><i className="fa fa-align-left"></i>New List</button>
-                    <button className="btn btn-primary transparent-button add_item_button" onClick={this.showAddItemModal}><i className="fa fa-plus"></i>Add Item to List</button>
-                  </div>
+                    { !this.isFrontPage() && (<button className="btn btn-primary transparent-button add_item_button" onClick={this.showAddItemModal}><i className="fa fa-plus"></i>Add Item to List</button>) }
+                    { (this.props.uid && this.props.user) && (<button className="btn btn-primary transparent-button add_item_button" onClick={this.logout}>Logout</button>) }
+                    </div>
                 </div>
               </div>
             </header>
