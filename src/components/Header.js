@@ -260,10 +260,21 @@ class Header extends React.Component{
                       New List 
                       <span className="glyphicon glyphicon-align-left pull-right"></span>
                     </div>
-                    <div className="menu-item primary-bg" onClick={this.showAddItemModal}>
-                      Add Item to List
-                      <span className="glyphicon glyphicon-plus pull-right"></span>
-                    </div>
+                    {
+                      !this.isFrontPage() && (
+                        <div className="menu-item primary-bg" onClick={this.showAddItemModal}>
+                          Add Item to List
+                          <span className="glyphicon glyphicon-plus pull-right"></span>
+                        </div>
+                      )
+                    }
+                    {
+                      (this.props.uid && this.props.user) && (
+                        <div className="menu-item" onClick={this.logout}>
+                          Logout
+                        </div>
+                      )
+                    }
                 </div>
                 )
               }

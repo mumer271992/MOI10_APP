@@ -168,6 +168,7 @@ class LoginModal extends React.Component {
                                 Login with facebook
                             </button>
                             <small id="note" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <span className="loader"></span>
                         </div>
                         <div className="foot_note centered">
                             <p>
