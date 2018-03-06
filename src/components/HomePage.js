@@ -83,6 +83,7 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
+        document.title = "Most Important 10";
         this.updateDimensions();
         window.addEventListener("resize", this.updateDimensions.bind(this));
         var config = {

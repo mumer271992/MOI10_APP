@@ -12,9 +12,11 @@ class LoginModal extends React.Component {
     state = {
         email: '',
         password: '',
-        error: undefined
+        error: undefined,
+        loading: false
     }
-
+    loading = false;
+    fbloading = false;
     emailChangeHandler = (e) => {
         e.persist();
         this.setState(() => ({
@@ -31,7 +33,6 @@ class LoginModal extends React.Component {
 
     loginApp = (e) => {
         e.preventDefault();
-        console.log(this.state);
         // axios.post(
         //     'http://api.moi10.com/auth/login',
         //     {
@@ -43,6 +44,11 @@ class LoginModal extends React.Component {
         // .catch((err)=> {
         //     console.log("Error:", err);
         // });
+        this.loading = true;
+        this.setState(() => ({
+            loading: true
+        }));
+        console.log(this.state);
         post('/auth/login', {
             email: this.state.email,
             password: this.state.password
@@ -56,6 +62,9 @@ class LoginModal extends React.Component {
                     error: err.response.data.error
                 }));
             }
+            this.setState(() => ({
+                loading: false
+            }));
         });
     }
 
@@ -69,6 +78,9 @@ class LoginModal extends React.Component {
             console.log(this.props);
             this.props.onSuccess();
         }
+        this.setState(() => ({
+            loading: false
+        }));
     }
     _handleFBLoginRespose = (res) => {
         console.log("Facebook Login");
@@ -78,11 +90,19 @@ class LoginModal extends React.Component {
             localStorage.setItem('auth_token',res.data.token);
             localStorage.setItem('user',JSON.stringify(res.data.user));
             console.log(this.props);
+            this.fbloading = false;
             this.props.onSuccess();
         }
+        this.setState(() => ({
+            fbloading: false
+        }));
     }
     loginFacebook = (e) => {
         e.preventDefault();
+        this.setState(() => ({
+            fbloading: true
+        }));
+
         FB.login((response) => {
             if(response.status == "connected"){
                 console.log("Connected");
@@ -101,14 +121,24 @@ class LoginModal extends React.Component {
                         localStorage.setItem('auth_token',res.data.token);
                         localStorage.setItem('user',JSON.stringify(res.data.user));
                         console.log(this.props);
+                        this.fbloading = false;
+                        this.setState(() => ({
+                            fbloading: false
+                        }));
                         this.props.onSuccess();
                     }
                 })
                 .catch((err)=> {
                     console.log("Error:", err);
+                    this.setState(() => ({
+                        fbloading: false
+                    }));
                 });
             }else{
               console.log("Not connected");
+                this.setState(() => ({
+                    fbloading: false
+                }));
             }
     
           }, {scope: 'email,user_likes'});
@@ -158,14 +188,14 @@ class LoginModal extends React.Component {
                                 <p className="red">{this.state.error}</p>
                                 </div>
                                 <button type="submit" className="btn btn-primary no-border full-width">
-                                    Log me in
+                                { !this.state.loading ? 'Log me in'  : (<div className="lds-dual-ring"></div>) }
                                 </button>
+                                
                             </form>
                             <button type="button" className="btn btn-light facebook-primary-button no-border full-width outline-darkblue"
                                 onClick={this.loginFacebook}
                             >
-                                <i className="fa fa-facebook-official" aria-hidden="true"></i>
-                                Login with facebook
+                                { !this.state.fbloading ? (<span> <i className="fa fa-facebook-official" aria-hidden="true"></i> Login with facebook</span>) : (<div className="lds-dual-ring"></div>) }
                             </button>
                             <small id="note" className="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>

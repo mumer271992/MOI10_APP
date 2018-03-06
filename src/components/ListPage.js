@@ -46,6 +46,7 @@ class ListPage extends React.Component {
         axios.get(url)
         .then((res) => {
             console.log(res.data);
+            document.title = res.data && res.data.name ? res.data.name + " - Most Important 10" : "Most Important 10"
             res.data.votes = this.calculateListVotes({ ...res.data });
             console.log(res.data.votes);
             this.props.dispatch(setList(res.data))
