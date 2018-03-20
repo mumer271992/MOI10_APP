@@ -10,7 +10,9 @@ class ScorePage extends React.Component{
         list_word: '',
         list_score: {},
         dictionary_word: '',
-        dictionary_score: {}
+        dictionary_score: {},
+        dictionary_length: 0,
+        words_list_length: 0
     }
     dicWordChangeHandler = (e) => {
         e.persist();
@@ -37,7 +39,8 @@ class ScorePage extends React.Component{
             console.log(res.data);
             if(res.data.success){
                 this.setState(() =>  ({
-                    dictionary_score: res.data.data
+                    dictionary_score: res.data.data,
+                    dictionary_length: res.data.length
                 }))
             }
         });
@@ -49,7 +52,8 @@ class ScorePage extends React.Component{
             console.log(res.data);
             if(res.data.success){
                 this.setState(() =>  ({
-                    list_score: res.data.data
+                    list_score: res.data.data,
+                    words_list_length: res.data.length
                 }))
             }
         });
@@ -57,7 +61,7 @@ class ScorePage extends React.Component{
     render() {
         return (
             <div className="row" style={{margin: 'auto', width: '50%'}}>
-                <h1>Dictionary Score</h1>
+                <h1>Dictionary Score (length: {this.state.dictionary_length})</h1>
                 <form className="form" onSubmit={this.find}>
                     <div className="form-group">
                         <input type="text" className="form-control" id="word" placeholder="WOrd" 
@@ -73,7 +77,7 @@ class ScorePage extends React.Component{
                 <p>Count: <span>{this.state.dictionary_score && this.state.dictionary_score.count}</span></p>
                 <p>Rank: <span>{this.state.dictionary_score && this.state.dictionary_score.rank}</span></p>
                 <p>Score: <span>{this.state.dictionary_score && this.state.dictionary_score.score}</span></p>
-                <h1>List Word Score</h1>
+                <h1>List Word Score (length: {this.state.words_list_length})</h1>
                 <form className="form" onSubmit={this.findListWord}>
                     <div className="form-group">
                         <input type="text" className="form-control" id="list_word" placeholder="List word" 
