@@ -124,6 +124,9 @@ h3{
   top: 50%;
   transform: translateY(-50%)
 }
+.modal.in .modal-dialog{
+  max-width: 425px;
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Small devices (landscape phones, 576px and up)
 @media (max-width: 450px) {
@@ -313,8 +316,10 @@ $check-color: $brand-success;
   border-color: transparent;
 }
 .facebook-primary-button{
+  padding: 5px 20px !important;
   background-color: #4267b2;
-  color: #fff;
+  color: #fff !important;
+  margin-bottom: 8px;
   i{
     margin-right: 5px;
   }

@@ -167,7 +167,7 @@ class LoginModal extends React.Component {
                 <Modal.Body>
                     <i className="fa fa-times cross-button" onClick={this.props.close}></i>
                     <div className="card">
-                        <div className="card-body">
+                        <div className="card-body centered">
                             <h2 className="card-title centered">
                                 Login
                             </h2>
@@ -197,20 +197,22 @@ class LoginModal extends React.Component {
                             >
                                 { !this.state.fbloading ? (<span> <i className="fa fa-facebook-official" aria-hidden="true"></i> Login with facebook</span>) : (<div className="lds-dual-ring"></div>) }
                             </button>
-                            <small id="note" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                        </div>
-                        <div className="foot_note centered">
-                            <p>
-                                New To MOI10? 
-                                <a className="dark-blue" onClick={
-                                    ()=> {
-                                        this.props.openSignupModal();
-                                    }
-                                }>Signup</a>
-                            </p>
+                            <small id="note" className="form-text">We'll never share your email with anyone else.</small>
                         </div>
                     </div>
                 </Modal.Body>
+                <Modal.Footer>
+                    <div className="foot_note centered">
+                        <p>
+                            New To MOI10? 
+                            <button type="button" className="btn btn-default signup-button" onClick={
+                                ()=> {
+                                    this.props.openSignupModal();
+                                }
+                            }>Signup</button>
+                        </p>
+                    </div>
+                </Modal.Footer>
             </Modal>
         );
     }

@@ -1,6 +1,17 @@
 .modal-content{
-    padding: 4rem;
+    padding: 0rem;
     border-radius: 16px;
+    .modal-body{
+        padding: 5rem;
+    }
+    .modal-footer{
+        background-color: $secondry;
+        border-bottom-right-radius: 14px;
+        border-bottom-left-radius: 14px;
+        border: 1px solid $secondry;
+        color: #ffffff;
+        padding: 8px;
+    }
     h2{
         margin-top: 0px;
         margin-bottom: 24px;
@@ -19,8 +30,8 @@
     }
     .cross-button{
         position: absolute;
-        top: -20px;
-        right: -20px;
+        top: 20px;
+        right: 20px;
         color: grey;
     }
 }

@@ -15,7 +15,20 @@
 .foot_note{
     text-align: center;
     margin: 15px 0px;
+    background-color: $secondry;
     a{
         cursor: pointer;
+    }
+    .signup-button{
+        background-color: transparent;
+        border-color: #ffffff;
+        color: #ffffff;
+        margin-left: 1rem;
+        font-size: 14px;
+    }
+    .signup-button:hover{
+        background-color: #ffffff;
+        color: $secondry;
+        font-weight: bold;
     }
 }
