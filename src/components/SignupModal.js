@@ -107,119 +107,57 @@ class SignupModal extends React.Component {
                 <Modal.Body>
                     <i className="fa fa-times cross-button" onClick={this.props.close}></i>
                     <div className="card">
-                        <div className="card-body">
-                            <h3 className="card-title">Sign Up</h3>
+                        <div className="card-body centered">
+                            <h2 className="card-title centered">Sign Up</h2>
                             <form onSubmit={this.submitSignupRequest}>
                                 <div className="form-group">
-                                <label>Name</label>
                                 <input type="text" className="form-control" id="name" placeholder="Enter Full Name" 
                                     value={this.state.name}
                                     onChange={this.nameChangeHandler} 
                                 />
                                 </div>
                                 <div className="form-group">
-                                <label>Email</label>
                                 <input type="email" className="form-control" id="email" placeholder="Enter Email"
                                     value={this.state.email}
                                     onChange={this.emailChangeHandler}
                                 />
                                 </div>
                                 <div className="form-group">
-                                <label>Password</label>
                                 <input type="password" className="form-control" id="password" placeholder="Password"
                                     value={this.state.password}
                                     onChange={this.passwordChangeHandler}
                                 />
                                 </div>
                                 <div className="form-group">
-                                <label>Confirm Password</label>
                                 <input type="password" className="form-control" id="password" placeholder="Confirm Password"
                                     value={this.state.confirmPassword}
                                     onChange={this.confirmPasswordChnageHandler}
                                 />
                                 </div>
                                 {this.state.error && <p>{this.state.error}</p>}
-                                <button type="submit" className="btn btn-primary full-width">
+                                <button type="submit" className="btn btn-primary full-width m-b">
                                 Sign Up
                                 </button>
-                                <div className="divider"></div>
-                                <small id="note" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <small id="note" className="form-text">We'll never share your email with anyone else.</small>
                             </form>
-                            <p>Already a member? </p>
-                            <a onClick={
-                                () => {
-                                    this.props.openLoginModal();
-                                }
-                            }>Login</a>
                         </div>
                     </div>
                 </Modal.Body>
+                <Modal.Footer>
+                <div className="foot_note centered">
+                    <p>
+                        Already a member?
+                        <button type="button" className="btn btn-default signup-button" onClick={
+                            () => {
+                                this.props.openLoginModal();
+                            }
+                        }>Login</button>
+                    </p>
+                </div>
+            </Modal.Footer>
             </Modal>
         );
     }
-    // render() {
-    //     return (
-    //         <div ref="signup_modal" className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    //             <div className="modal-dialog small-modal" role="document">
-    //                 <div className="modal-content">
-    //                     <div className="modal-body">
-    //                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-    //                             <span aria-hidden="true">&times;</span>
-    //                         </button>
-    //                         <div className="card">
-    //                             <div className="card-body">
-    //                                 <h3 className="card-title">Sign Up</h3>
-    //                                 <form onSubmit={this.submitSignupRequest}>
-    //                                     <div className="form-group">
-    //                                     <label for="name">Name</label>
-    //                                     <input type="text" className="form-control" id="name" placeholder="Enter Full Name" 
-    //                                         value={this.state.name}
-    //                                         onChange={this.nameChangeHandler} 
-    //                                     />
-    //                                     </div>
-    //                                     <div className="form-group">
-    //                                     <label for="email">Email</label>
-    //                                     <input type="email" className="form-control" id="email" placeholder="Enter Email"
-    //                                         value={this.state.email}
-    //                                         onChange={this.emailChangeHandler}
-    //                                     />
-    //                                     </div>
-    //                                     <div className="form-group">
-    //                                     <label for="password">Password</label>
-    //                                     <input type="password" className="form-control" id="password" placeholder="Password"
-    //                                         value={this.state.password}
-    //                                         onChange={this.passwordChangeHandler}
-    //                                     />
-    //                                     </div>
-    //                                     <div className="form-group">
-    //                                     <label for="password">Confirm Password</label>
-    //                                     <input type="password" className="form-control" id="password" placeholder="Confirm Password"
-    //                                         value={this.state.confirmPassword}
-    //                                         onChange={this.confirmPasswordChnageHandler}
-    //                                     />
-    //                                     </div>
-    //                                     {this.state.error && <p>{this.state.error}</p>}
-    //                                     <button type="submit" className="btn btn-primary full-width">
-    //                                     Sign Up
-    //                                     </button>
-    //                                     <div className="divider"></div>
-    //                                     <small id="note" className="form-text text-muted">We'll never share your email with anyone else.</small>
-    //                                 </form>
-    //                                 <p>Already a member? </p>
-    //                                 <a onClick={
-    //                                     () => {
-    //                                         this.hide();
-    //                                         this.props.openLoginModal();
-    //                                     }
-    //                                 }>Login</a>
-    //                             </div>
-    //                         </div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     );
-    // }
 }
 
 const mapStateToProps = (state, props) => ({
